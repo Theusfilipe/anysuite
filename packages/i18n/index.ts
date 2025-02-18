@@ -9,7 +9,16 @@ const translations = {
       maintenanceWelcome: "Welcome to the Maintenance Dashboard",
 
       serviceRequestList: "Service Request List",
+
       newServiceRequest: "New Service Request",
+      // Below are the form data for "New Service Request",
+      baseWhereEquipmentIsLocated: "Base where equipment is located",
+      selectBase: "Select a base",
+      locationOfEquipment: "Location of equipment",
+      nameOfEquipment: "Name of equipment",
+      textOfProblem: "Text of the problem",
+      createRequest: "Create Request",
+
 
       newServiceOrder: "New Service Order",
       serviceOrderList: "Service Order List",
@@ -25,6 +34,14 @@ const translations = {
 
       serviceRequestList: "Listagem de solicitações de serviço",
       newServiceRequest: "Nova solicitação de serviço",
+
+      // Abaixo dados do formulário de "Nova solicitação de serviço",
+      baseWhereEquipmentIsLocated: "Base onde o equipamento se encontra",
+      selectBase: "Selecione uma base",
+      locationOfEquipment: "Localização do equipamento",
+      nameOfEquipment: "Nome do equipamento",
+      textOfProblem: "Texto do problema",
+      createRequest: "Criar solicitação",
 
       newServiceOrder: "Nova ordem de serviço",
       serviceOrderList: "Listagem de ordens de serviço",

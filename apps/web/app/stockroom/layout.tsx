@@ -5,22 +5,22 @@ import Link from "next/link";
 
 const lang = "pt";
 
-export default function MaintenanceLayout({ children }: { children: ReactNode }) {
+export default function StockroomLayout({ children }: { children: ReactNode }) {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <aside style={sidebarStyle}>
         <ul>
           <li>
-            <Link href="/maintenance/serviceRequestList">{getTranslation(lang, "serviceRequestList")}</Link>
+            <Link href="/stockroom/serviceRequestList">{getTranslation(lang, "serviceRequestList")}</Link>
           </li>
           <li>
-            <Link href="/maintenance/newServiceRequest">{getTranslation(lang, "newServiceRequest")}</Link>
+            <Link href="/stockroom/newServiceRequest">{getTranslation(lang, "newServiceRequest")}</Link>
           </li>
           <li>
-            <Link href="/maintenance/newServiceOrder">{getTranslation(lang, "newServiceOrder")}</Link>
+            <Link href="/stockroom/newServiceOrder">{getTranslation(lang, "newServiceOrder")}</Link>
           </li>
           <li>
-            <Link href="/maintenance/serviceOrderList">{getTranslation(lang, "serviceOrderList")}</Link>
+            <Link href="/stockroom/serviceOrderList">{getTranslation(lang, "serviceOrderList")}</Link>
           </li>
           <li>
             <Link href="/">{getTranslation(lang, "return")}</Link>
