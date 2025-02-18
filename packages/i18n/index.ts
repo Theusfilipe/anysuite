@@ -19,6 +19,8 @@ const translations = {
       textOfProblem: "Text of the problem",
       createRequest: "Create Request",
 
+      editServiceOrder: "Edit Service Order",
+
 
       newServiceOrder: "New Service Order",
       serviceOrderList: "Service Order List",
@@ -42,6 +44,8 @@ const translations = {
       nameOfEquipment: "Nome do equipamento",
       textOfProblem: "Texto do problema",
       createRequest: "Criar solicitação",
+
+      editServiceOrder: "Editar ordem de serviço",
 
       newServiceOrder: "Nova ordem de serviço",
       serviceOrderList: "Listagem de ordens de serviço",

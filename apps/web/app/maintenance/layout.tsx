@@ -20,6 +20,9 @@ export default function MaintenanceLayout({ children }: { children: ReactNode })
             <Link href="/maintenance/newServiceOrder">{getTranslation(lang, "newServiceOrder")}</Link>
           </li>
           <li>
+            <Link href="/maintenance/editServiceOrder">{getTranslation(lang, "editServiceOrder")}</Link>
+          </li>
+          <li>
             <Link href="/maintenance/serviceOrderList">{getTranslation(lang, "serviceOrderList")}</Link>
           </li>
           <li>
