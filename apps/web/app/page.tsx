@@ -37,10 +37,10 @@ export default function Home() {
         </Link>
 
         <Link href="/stockroom">
-          <div style={buttonStyle}>
+          <Button >
             
             <span>{getTranslation(lang, "stockroom")}</span>
-          </div>
+          </Button>
         </Link>
       </div>
     </div>
