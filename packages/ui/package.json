@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./button": "./src/button.tsx",
+    "./buttonLabelAndIcon": "./src/buttonLabelAndIcon.tsx",
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx"
   },
@@ -23,6 +23,10 @@
     "typescript": "5.7.3"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.6",
+    "@mui/material": "^6.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

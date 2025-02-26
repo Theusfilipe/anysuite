@@ -1,5 +1,5 @@
 import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
+import  ButtonLabelAndIcon  from "@repo/ui/buttonLabelAndIcon";
 import styles from "./page.module.css";
 import Link from "next/link";
 
@@ -30,17 +30,15 @@ export default function Home() {
 
       <div style={{ display: "flex", gap: "20px" }}>
         <Link href="/maintenance">
-          <div style={buttonStyle}>
-            
-            <span>{getTranslation(lang, "maintenance")}</span>
-          </div>
+          
+            <ButtonLabelAndIcon icon="Handyman" text={getTranslation(lang, "maintenance")}/>
+              
         </Link>
 
         <Link href="/stockroom">
-          <Button >
+          <ButtonLabelAndIcon icon="Inventory" text={getTranslation(lang, "stockroom")}/>
             
-            <span>{getTranslation(lang, "stockroom")}</span>
-          </Button>
+           
         </Link>
       </div>
     </div>
