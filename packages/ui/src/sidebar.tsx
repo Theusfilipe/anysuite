@@ -32,7 +32,8 @@ import UnknownIcon from '@mui/icons-material/NotListedLocation';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
-import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
+
+import Inventory2 from '@mui/icons-material/Inventory2';
 
 const drawerWidth = 240;
 
@@ -125,7 +126,7 @@ const getIcon = (iconName: string) => {
     if (iconName === "ListAlt") return <ListAltIcon />;
     if (iconName === "ArrowBack") return <ArrowBackIcon />;
     if (iconName === "AddCircle") return <AddCircleIcon />;
-    if (iconName === "Inventory") return <StoreMallDirectoryIcon />;
+    if (iconName === "Inventory") return <Inventory2 />;
     if (iconName === "AddCircleOutline") return <AddCircleOutline />;
     return <UnknownIcon />; // Ícone padrão caso não encontre
   };
