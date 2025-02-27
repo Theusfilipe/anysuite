@@ -27,7 +27,7 @@ interface ButtonProps {
   text?: string;
 }
 
-export const Button = ({
+export const ButtonLabelAndIcon = ({
   //children,
   onClick,
   type = "button",
@@ -55,4 +55,4 @@ export const Button = ({
 //  {children}
 //</button>
 
-export default Button;
+export default ButtonLabelAndIcon;
