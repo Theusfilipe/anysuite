@@ -30,6 +30,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import UnknownIcon from '@mui/icons-material/NotListedLocation';
 
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
+import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -120,6 +124,9 @@ const getIcon = (iconName: string) => {
     if (iconName === "AssignmentReturn") return <AssignmentReturnIcon />;
     if (iconName === "ListAlt") return <ListAltIcon />;
     if (iconName === "ArrowBack") return <ArrowBackIcon />;
+    if (iconName === "AddCircle") return <AddCircleIcon />;
+    if (iconName === "Inventory") return <StoreMallDirectoryIcon />;
+    if (iconName === "AddCircleOutline") return <AddCircleOutline />;
     return <UnknownIcon />; // Ícone padrão caso não encontre
   };
 
