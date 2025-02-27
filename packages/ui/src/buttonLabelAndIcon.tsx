@@ -45,14 +45,5 @@ export const ButtonLabelAndIcon = ({
 };
 
 
-//<button
-//type={type}
-//background-image={Handyman}
-//className={`${styles.button} ${styles[variant]} ${disabled ? styles.disabled : ""} ${className}`}
-//onClick={onClick}
-//disabled={disabled}
-//>
-//  {children}
-//</button>
 
 export default ButtonLabelAndIcon;
