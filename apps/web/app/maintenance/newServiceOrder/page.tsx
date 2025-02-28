@@ -23,11 +23,17 @@ interface ServiceEquipment {
 const serviceRequests: ServiceRequest[] = [
   { id: "1", code: "SR-1001", name: "Fix Compressor", date: "2025-02-15" },
   { id: "2", code: "SR-1002", name: "Repair Generator", date: "2025-02-16" },
+  { id: "3", code: "SR-1003", name: "Replace Hydraulic Pump", date: "2025-02-17" },
+  { id: "4", code: "SR-1004", name: "Check Cooling System", date: "2025-02-18" },
+  { id: "5", code: "SR-1005", name: "Lubricate Conveyor Belt", date: "2025-02-19" },
 ];
 
 const serviceEquipments: ServiceEquipment[] = [
   { id: "1", code: "EQ-2001", name: "Compressor X", location: "São Paulo" },
   { id: "2", code: "EQ-2002", name: "Generator Y", location: "Rio de Janeiro" },
+  { id: "3", code: "EQ-2003", name: "Hydraulic Pump A", location: "Belo Horizonte" },
+  { id: "4", code: "EQ-2004", name: "Cooling System B", location: "Curitiba" },
+  { id: "5", code: "EQ-2005", name: "Conveyor Belt C", location: "Porto Alegre" },
 ];
 
 const serviceOrderTypes = ["Maintenance", "Inspection", "Repair"];

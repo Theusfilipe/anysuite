@@ -28,9 +28,9 @@ export default function newServiceRequest() {
   };
 
   const locations = [
-    { key: "1", label: "São Paulo" },
-    { key: "2", label: "Rio de Janeiro" },
-    { key: "3", label: "Belo Horizonte" },
+    { key: "1", label: "Base Araruama" },
+    { key: "2", label: "RCS Anequim" },
+    { key: "3", label: "RCS Capitão" },
   ];
 
   return (
