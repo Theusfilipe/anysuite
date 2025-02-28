@@ -38,6 +38,18 @@ const translations = {
       addNewEmployee: "Add New Employee",
       listEmployee: "List Employee",
       addEmployee: "Add Employee",
+      employeeName: "Employee Name",
+      telephone: "Telephone",
+      email: "Email",
+      role: "Role",
+      admissionDate: "Admission Date",
+      occupationalHealthCertificate: "Occupational Health Certificate",
+      bloodType: "Blood Type",
+      salary: "Salary",
+      moneyAdornment: "$",
+
+      filterByName: "Filter by name",
+      filterByRole: "Filter by role",
 
       startDate: "Start Date",
       observation: "Observation",
@@ -82,6 +94,19 @@ const translations = {
       addNewEmployee: "Adicionar novo funcionário",
       listEmployee: "Listar funcionários",
       addEmployee: "Adicionar funcionário",
+      employeeName: "Nome do funcionário",
+      telephone: "Telefone",
+      email: "Email",
+      role: "Função",
+      admissionDate: "Data de admissão",
+      occupationalHealthCertificate: "ASO",
+      bloodType: "Tipo sanguíneo",
+      salary: "Salário",
+      moneyAdornment: "R$",
+
+      filterByName: "Filtrar por nome",
+      filterByRole: "Filtrar por função",
+
 
       startDate: "Data de início",
       observation: "Observação",

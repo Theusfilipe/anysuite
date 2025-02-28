@@ -17,7 +17,7 @@ export default function MaintenanceLayout({ children }: { children: ReactNode })
     <div style={{ display: "flex", height: "100vh" }}>
       
 
-      <Sidebar title={getTranslation(lang, "maintenanceWelcome")} menuItems={menuItems}>
+      <Sidebar title={getTranslation(lang, "personelControl")} menuItems={menuItems}>
         {children} {/* Aqui o conteúdo das páginas filhas será exibido */}
       </Sidebar>
     </div>
