@@ -27,7 +27,7 @@ export default function ServiceOrdersList() {
             <TableRow>
               <TableCell>{getTranslation(lang, "id")}</TableCell>
               <TableCell>{getTranslation(lang, "serviceRequest")}</TableCell>
-              <TableCell>{getTranslation(lang, "equipmentUsed")}</TableCell>
+              <TableCell>{getTranslation(lang, "equipmentsToBeFixed")}</TableCell>
               <TableCell>{getTranslation(lang, "startDate")}</TableCell>
               <TableCell>{getTranslation(lang, "serviceOrderType")}</TableCell>
               <TableCell>{getTranslation(lang, "status")}</TableCell>
@@ -44,9 +44,9 @@ export default function ServiceOrdersList() {
                 <TableCell>{order.type}</TableCell>
                 <TableCell>{order.status}</TableCell>
                 <TableCell>
-                  <Button variant="contained" color="primary" onClick={() => handleEdit(order.id)}>
+                    <Button variant="contained" color="primary" onClick={() => window.location.href = `/maintenance/editServiceOrder/`}>
                     {getTranslation(lang, "edit")}
-                  </Button>
+                    </Button>
                 </TableCell>
               </TableRow>
             ))}

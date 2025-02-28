@@ -26,9 +26,12 @@ const translations = {
       serviceOrder: "Service Order",
       newServiceOrder: "New Service Order",
       serviceOrderList: "Service Order List",
-      equipmentUsed: "Equipment used",
+      equipmentsToBeFixed: "Equipment to be fixed",
       serviceOrderType: "Service Order Type",
       createServiceOrder: "Create Service Order",
+
+      equipmentUsed: "Equipment Used",
+      sparePartUsed: "Spare Part Used",
       
       stockroomEquipmentList: "Stockroom Equipment List",
       stockroomNewEquipment: "New Equipment",
@@ -51,11 +54,21 @@ const translations = {
       filterByName: "Filter by name",
       filterByRole: "Filter by role",
 
+    
+
+      employee: "Employee",
+      date: "Date",
       startDate: "Start Date",
+      startTime: "Start Time",
+      endTime: "End Time",
       observation: "Observation",
       edit: "Edit",
       status: "Status",
       id: "ID",
+      addLine: "Add Line",
+      deleteLine: "Delete Line",
+      action: "Action",
+      actions: "Actions",
 
       return:"Return",
     },
@@ -84,9 +97,12 @@ const translations = {
 
       newServiceOrder: "Nova ordem de serviço",
       serviceOrderList: "Lista de ordens de serviço",
-      equipmentUsed: "Equipamentos utilizados",
+      equipmentsToBeFixed: "Equipamentos para concertar",
       serviceOrderType: "Tipo de ordem de serviço",
       createServiceOrder: "Criar ordem de serviço",
+
+      equipmentUsed: "Equipamento utilizado",
+      sparePartUsed: "Peça utilizada",
 
       stockroomEquipmentList: "Lista de equipamentos",
       stockroomNewEquipment: "Novo equipamento",
@@ -109,12 +125,22 @@ const translations = {
       filterByName: "Filtrar por nome",
       filterByRole: "Filtrar por função",
 
+      employee: "Funcionário",
+      date: "Data",
+
 
       startDate: "Data de início",
+      endDate: "Data de término",
+      startTime: "Hora de início",
+      endTime: "Hora de término",
       observation: "Observação",
       edit: "Editar",
       status: "Status",
       id: "Código",
+      addLine: "Adicionar linha",
+      deleteLine: "Deletar linha",
+      actions: "Ações",
+      action: "Ação",
 
       return:"Retornar",
     },
