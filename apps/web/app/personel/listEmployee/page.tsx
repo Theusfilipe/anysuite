@@ -3,6 +3,7 @@
 import { getTranslation } from "./../../../../../packages/i18n/index";
 import { useState } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField } from "@mui/material";
+import Link from "next/link";
 
 const lang = "pt";
 
@@ -90,9 +91,12 @@ export default function EmployeeList() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button variant="contained" color="primary" sx={{ marginTop: 2 }}>
-        {getTranslation(lang, "addEmployee")}
-      </Button>
+      <Link href="/personel/addNewEmployee" passHref>
+        <Button variant="contained" color="primary" sx={{ marginTop: 2 }}>
+            {getTranslation(lang, "addEmployee")}
+        </Button>
+      </Link>
+      
     </Box>
   );
 }
