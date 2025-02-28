@@ -31,6 +31,10 @@ const employeeNames = [
     salary: 4000 + (i % 10) * 500,
   }));
   
+const handleEdit = (id: string) => {
+  console.log("Edit service order:", id);
+    // Redirect or open edit modal
+};
 
 export default function EmployeeList() {
   const [nameFilter, setNameFilter] = useState("");
@@ -86,6 +90,11 @@ export default function EmployeeList() {
                 <TableCell>{employee.admissionDate}</TableCell>
                 <TableCell>{employee.bloodType}</TableCell>
                 <TableCell>{getTranslation(lang,"moneyAdornment")+ employee.salary}</TableCell>
+                <TableCell>
+                  <Button variant="contained" color="primary" onClick={() => handleEdit(employee.id.toString())}>
+                    {getTranslation(lang, "edit")}
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
