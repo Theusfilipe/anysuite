@@ -37,8 +37,10 @@ export default function Home() {
 
         <Link href="/stockroom">
           <ButtonLabelAndIcon icon="Inventory" text={getTranslation(lang, "stockroom")}/>
-            
-           
+        </Link>
+
+        <Link href="/personel">
+          <ButtonLabelAndIcon icon="Group" text={getTranslation(lang, "personelControl")}/>
         </Link>
       </div>
     </div>
@@ -47,17 +49,3 @@ export default function Home() {
 
 import { CSSProperties } from "react";
 
-const buttonStyle: CSSProperties = {
-  width: "150px",
-  height: "150px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  border: "2px solid #000",
-  borderRadius: "10px",
-  cursor: "pointer",
-  background: "#f8f9fa",
-  textAlign: "center",
-  fontSize: "16px",
-};

@@ -7,12 +7,14 @@ import ButtonMUI from '@mui/material/Button';
 
 import Handyman from "@mui/icons-material/Handyman";
 import Inventory from "@mui/icons-material/Inventory2";
+import Group from "@mui/icons-material/Group";
 
 import Unknown from "@mui/icons-material/DeviceUnknown";
 
 const iconMap = {
   Handyman: <Handyman />,
   Inventory: <Inventory />,
+  Group: <Group />,
   Unknown: <Unknown />,
 };
 
@@ -23,7 +25,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   variant?: "primary" | "secondary" | "danger";
-  icon?:"Handyman"|"Inventory"| "Unknown";
+  icon?:"Handyman"|"Inventory"| "Group"| "Unknown";
   text?: string;
 }
 
@@ -43,7 +45,5 @@ export const ButtonLabelAndIcon = ({
       </ButtonMUI>
   );
 };
-
-
 
 export default ButtonLabelAndIcon;

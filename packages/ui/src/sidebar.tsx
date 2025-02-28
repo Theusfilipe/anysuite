@@ -35,6 +35,9 @@ import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
 
 import Inventory2 from '@mui/icons-material/Inventory2';
 
+import Group from '@mui/icons-material/Group';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -128,6 +131,8 @@ const getIcon = (iconName: string) => {
     if (iconName === "AddCircle") return <AddCircleIcon />;
     if (iconName === "Inventory") return <Inventory2 />;
     if (iconName === "AddCircleOutline") return <AddCircleOutline />;
+    if  (iconName === "Group") return <Group />;
+    if  (iconName === "PersonAdd") return <PersonAdd />;
     return <UnknownIcon />; // Ícone padrão caso não encontre
   };
 

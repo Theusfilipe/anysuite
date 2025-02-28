@@ -34,6 +34,11 @@ const translations = {
       stockroomNewEquipment: "New Equipment",
       stockroomNewSparePart: "New Spare Part",
 
+      personelControl: "Personel Control",
+      addNewEmployee: "Add New Employee",
+      listEmployee: "List Employee",
+      addEmployee: "Add Employee",
+
       startDate: "Start Date",
       observation: "Observation",
       edit: "Edit",
@@ -72,6 +77,11 @@ const translations = {
       stockroomEquipmentList: "Lista de equipamentos",
       stockroomNewEquipment: "Novo equipamento",
       stockroomNewSparePart: "Nova peça",
+
+      personelControl: "Controle de pessoal",
+      addNewEmployee: "Adicionar novo funcionário",
+      listEmployee: "Listar funcionários",
+      addEmployee: "Adicionar funcionário",
 
       startDate: "Data de início",
       observation: "Observação",
