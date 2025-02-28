@@ -54,6 +54,8 @@ const translations = {
       startDate: "Start Date",
       observation: "Observation",
       edit: "Edit",
+      status: "Status",
+      id: "ID",
 
       return:"Return",
     },
@@ -111,6 +113,8 @@ const translations = {
       startDate: "Data de início",
       observation: "Observação",
       edit: "Editar",
+      status: "Status",
+      id: "Código",
 
       return:"Retornar",
     },
