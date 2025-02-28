@@ -6,10 +6,30 @@ import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
 
 const lang = "pt";
 
-const employees = [
-  { id: 1, name: "John Doe", telephone: "(11) 99999-9999", email: "john@example.com", role: "Engineer", admissionDate: "2023-01-10", bloodType: "O+", salary: 5000 },
-  { id: 2, name: "Jane Smith", telephone: "(21) 98888-8888", email: "jane@example.com", role: "Technician", admissionDate: "2022-05-15", bloodType: "A+", salary: 4500 },
-];
+const employeeNames = [
+    "Ana Silva", "Bruno Souza", "Carlos Pereira", "Carlos Costa", "Carlos Lima",
+    "Carlos Alves", "Gabriel Rocha", "Helena Martins", "Helena Mendes", "Helena Castro",
+    "Kleber Nascimento", "Larissa Teixeira", "Marcos Ribeiro", "Natália Fernandes", "Otávio Cardoso",
+    "Paula Moura", "Quintino Barros", "Rafaela Duarte", "Samuel Lopes", "Tatiane Freitas",
+    "Ubirajara Rezende", "Vera Lemos", "Wagner Moreira", "Ximena Assis", "Yasmin Andrade",
+    "Zeca Tavares", "Alessandra Pinto", "Bernardo Farias", "Camila Neves", "Diego Vasconcelos",
+    "Eliana Campos", "Fabiano Meireles", "Gisele Brito", "Henrique Dutra", "Isabela Fonseca",
+    "Joaquim Barbosa", "Kelly Oliveira", "Luiz Gustavo", "Marta Monteiro", "Nelson Paiva",
+    "Olga Mendes", "Gustavo Albuquerque", "Gustavo Moraes", "Gustavo Goulart", "Sônia Braga",
+    "Thiago Sena", "Ursula Amaral", "Vinícius Machado", "Wellington França", "Zilda Moreira"
+  ];
+  
+  const employees = employeeNames.map((name, i) => ({
+    id: i + 1,
+    name,
+    telephone: `(11) 9000-00${i % 100}`,
+    email: `employee${i + 1}@example.com`,
+    role: i % 2 === 0 ? "Engineer" : "Technician",
+    admissionDate: `202${i % 5}-0${(i % 9) + 1}-15`,
+    bloodType: ["O+", "A+", "B+", "AB-"][i % 4],
+    salary: 4000 + (i % 10) * 500,
+  }));
+  
 
 export default function EmployeeList() {
   const [nameFilter, setNameFilter] = useState("");
