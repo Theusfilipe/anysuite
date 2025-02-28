@@ -96,7 +96,6 @@ export default function EmployeeList() {
             {getTranslation(lang, "addEmployee")}
         </Button>
       </Link>
-      
     </Box>
   );
 }
