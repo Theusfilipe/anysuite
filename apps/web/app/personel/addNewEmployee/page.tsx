@@ -1,10 +1,11 @@
 "use client";
 
-import { getTranslation } from "./../../../../../packages/i18n/index";
+import { getCurrencyAdornment, getTranslation } from "./../../../../../packages/i18n/index";
 import { useState } from "react";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Button, Input, InputAdornment } from "@mui/material";
 
 const lang = "pt";
+const currency = "brReal";
 
 const roles = ["Engineer", "Technician", "Manager", "Operator"];
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -111,7 +112,7 @@ export default function NewEmployee() {
           <InputLabel htmlFor="standard-adornment-amount">{getTranslation(lang, "salary")}</InputLabel>
           <Input
             id="standard-adornment-amount"
-            startAdornment={<InputAdornment position="start">{getTranslation(lang,"moneyAdornment")}</InputAdornment>}
+            startAdornment={<InputAdornment position="start">{getCurrencyAdornment(currency)}</InputAdornment>}
           />
         </FormControl>
 

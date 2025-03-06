@@ -1,11 +1,12 @@
 "use client";
 
-import { getTranslation } from "./../../../../../packages/i18n/index";
+import { getCurrencyAdornment, getTranslation } from "./../../../../../packages/i18n/index";
 import { useState } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField } from "@mui/material";
 import Link from "next/link";
 
 const lang = "pt";
+const currency = "brReal";
 
 const employeeNames = [
     "Ana Silva", "Bruno Souza", "Carlos Pereira", "Carlos Costa", "Carlos Lima",
@@ -89,7 +90,7 @@ export default function EmployeeList() {
                 <TableCell>{employee.role}</TableCell>
                 <TableCell>{employee.admissionDate}</TableCell>
                 <TableCell>{employee.bloodType}</TableCell>
-                <TableCell>{getTranslation(lang,"moneyAdornment")+ employee.salary}</TableCell>
+                <TableCell>{getCurrencyAdornment(currency)+ employee.salary}</TableCell>
                 <TableCell>
                   <Button variant="contained" color="primary" onClick={() => handleEdit(employee.id.toString())}>
                     {getTranslation(lang, "edit")}
