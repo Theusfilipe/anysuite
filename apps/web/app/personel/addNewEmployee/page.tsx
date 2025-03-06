@@ -2,7 +2,7 @@
 
 import { getCurrencyAdornment, getTranslation } from "./../../../../../packages/i18n/index";
 import { useState } from "react";
-import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Button, Input, InputAdornment } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Button, Input, InputAdornment, OutlinedInput } from "@mui/material";
 
 const lang = "pt";
 const currency = "brReal";
@@ -19,7 +19,7 @@ export default function NewEmployee() {
     admissionDate: "",
     occupationalHealthCertificate: "",
     bloodType: "",
-    salary: "",
+    salary: "0,00",
   });
 
   const handleChange = (e: any) => {
@@ -41,7 +41,7 @@ export default function NewEmployee() {
     const formattedValue = formatCurrency(e.target.value);
     setFormData((prevData) => ({
       ...prevData,
-      unitaryCost: formattedValue,
+      salary: formattedValue,
     }));
   };
 
@@ -94,8 +94,8 @@ export default function NewEmployee() {
         />
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel>{getTranslation(lang, "role")}</InputLabel>
-          <Select name="role" value={formData.role} onChange={handleChange}>
+          <InputLabel htmlFor={String(getTranslation(lang,"role"))}>{getTranslation(lang, "role")}</InputLabel>
+          <Select name="role" value={formData.role} onChange={handleChange} label={getTranslation(lang, "role")}>
             {roles.map((role) => (
               <MenuItem key={role} value={role}>
                 {role}
@@ -112,7 +112,7 @@ export default function NewEmployee() {
           value={formData.admissionDate}
           onChange={handleChange}
           sx={{ marginBottom: 2 }}
-          
+          InputLabelProps={{ shrink: true }}
         />
 
         <TextField
@@ -125,8 +125,8 @@ export default function NewEmployee() {
         />
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel>{getTranslation(lang, "bloodType")}</InputLabel>
-          <Select name="bloodType" value={formData.bloodType} onChange={handleChange}>
+          <InputLabel htmlFor={"outlined-adornment-bloodtype"}>{getTranslation(lang, "bloodType")}</InputLabel>
+          <Select name="bloodType" value={formData.bloodType} onChange={handleChange} label={"outlined-adornment-bloodtype"}>
             {bloodTypes.map((type) => (
               <MenuItem key={type} value={type}>
                 {type}
@@ -135,10 +135,13 @@ export default function NewEmployee() {
           </Select>
         </FormControl>
 
-        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-          <InputLabel htmlFor="standard-adornment-amount">{getTranslation(lang, "salary")}</InputLabel>
-          <Input
-            id="standard-adornment-amount"
+        <FormControl fullWidth sx={{ marginBottom: 2 }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-amount" shrink>{getTranslation(lang, "salary")}</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-amount"
+            name="salary"
+            label={getTranslation(lang, "salary")}
+            value={formData.salary}
             onChange={handleUnitaryCostChange}
             startAdornment={<InputAdornment position="start">{getCurrencyAdornment(currency)}</InputAdornment>}
           />

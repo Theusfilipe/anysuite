@@ -93,13 +93,13 @@ export default function StockroomNewSparePart() {
 
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">{getTranslation(lang, "unitaryCost")}</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-amount" shrink>{getTranslation(lang, "unitaryCost")}</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
             name="unitaryCost"
             value={formData.unitaryCost}
             onChange={handleUnitaryCostChange}
-            label={getTranslation(lang, "unitaryCost")}
+            label="outlined-adornment-amount"
             startAdornment={<InputAdornment position="start">{getCurrencyAdornment(currency)}</InputAdornment>}
           />
         </FormControl>
