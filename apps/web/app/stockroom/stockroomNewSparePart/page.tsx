@@ -1,6 +1,6 @@
 "use client";
 
-import { getCurrency, getTranslation } from "./../../../../../packages/i18n/index";
+import { getCurrencyAdornment, getTranslation } from "./../../../../../packages/i18n/index";
 import { useState } from "react";
 import { Box, TextField, Button, InputAdornment, FormControl, InputLabel, Input, OutlinedInput } from "@mui/material";
 
@@ -100,7 +100,7 @@ export default function StockroomNewSparePart() {
             value={formData.unitaryCost}
             onChange={handleUnitaryCostChange}
             label={getTranslation(lang, "unitaryCost")}
-            startAdornment={<InputAdornment position="start">{getCurrency(currency)}</InputAdornment>}
+            startAdornment={<InputAdornment position="start">{getCurrencyAdornment(currency)}</InputAdornment>}
           />
         </FormControl>
 

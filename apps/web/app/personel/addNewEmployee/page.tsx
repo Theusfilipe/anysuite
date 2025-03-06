@@ -30,6 +30,33 @@ export default function NewEmployee() {
     });
   };
 
+  const formatCurrency = (value: string) => {
+    let numericValue = value.replace(/[^0-9]/g, "");
+    if (numericValue === "") return "0,00";
+    numericValue = (Number(numericValue) / 100).toFixed(2);
+    return `${numericValue.replace(".", ",")}`;
+  };
+
+  const handleUnitaryCostChange = (e: any) => {
+    const formattedValue = formatCurrency(e.target.value);
+    setFormData((prevData) => ({
+      ...prevData,
+      unitaryCost: formattedValue,
+    }));
+  };
+
+  const handleLeftZeros = (e: any) => {
+    let value = e.target.value;
+    if (value === "0") {
+      value = "";
+    }
+    
+    setFormData((prevData) => ({
+      ...prevData,
+      weight: value,
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
@@ -85,7 +112,7 @@ export default function NewEmployee() {
           value={formData.admissionDate}
           onChange={handleChange}
           sx={{ marginBottom: 2 }}
-          InputLabelProps={{ shrink: true }}
+          
         />
 
         <TextField
@@ -112,6 +139,7 @@ export default function NewEmployee() {
           <InputLabel htmlFor="standard-adornment-amount">{getTranslation(lang, "salary")}</InputLabel>
           <Input
             id="standard-adornment-amount"
+            onChange={handleUnitaryCostChange}
             startAdornment={<InputAdornment position="start">{getCurrencyAdornment(currency)}</InputAdornment>}
           />
         </FormControl>
