@@ -1,6 +1,6 @@
 import newServiceRequest from "../../apps/web/app/maintenance/newServiceRequest/page";
 
-const translations = {
+const translations: { [key in Language]: { [key: string]: string } } = {
     en: {
       maintenance: "Maintenance",
       stockroom: "Stockroom",
@@ -54,7 +54,19 @@ const translations = {
       filterByName: "Filter by name",
       filterByRole: "Filter by role",
 
-    
+      newEquipment: "New Equipment",
+      quantityOfDaysBetweenMaintenance: "Quantity of days between maintenance",
+      lastMaintenanceDate: "Last Maintenance Date",
+      addEquipment: "Add Equipment",
+      equipmentName: "Equipment Name",
+
+      newSparePart: "New Spare Part",
+      sparePartName: "Spare Part Name",
+      weight: "Weight",
+      material: "Material",
+      unitaryCost: "Unitary Cost",
+      quantity: "Quantity",
+      addSparePart: "Add Spare Part",
 
       employee: "Employee",
       date: "Date",
@@ -120,7 +132,8 @@ const translations = {
       occupationalHealthCertificate: "ASO",
       bloodType: "Tipo sanguíneo",
       salary: "Salário",
-      moneyAdornment: "R$",
+      moneyAdornmentReal: "R$",
+      weightAdornmentKG: "kg",
 
       filterByName: "Filtrar por nome",
       filterByRole: "Filtrar por função",
@@ -128,6 +141,19 @@ const translations = {
       employee: "Funcionário",
       date: "Data",
 
+      newEquipment: "Novo equipamento",
+      quantityOfDaysBetweenMaintenance: "Quantidade de dias entre manutenções",
+      lastMaintenanceDate: "Data da última manutenção",
+      addEquipment: "Adicionar equipamento",
+      equipmentName: "Nome do equipamento",
+
+      newSparePart: "Nova peça",
+      sparePartName: "Nome da peça",
+      weight: "Peso",
+      material: "Material",
+      unitaryCost: "Custo unitário",
+      quantity: "Quantidade",
+      addSparePart: "Adicionar peça",
 
       startDate: "Data de início",
       endDate: "Data de término",
@@ -145,9 +171,19 @@ const translations = {
       return:"Retornar",
     },
   };
+
+  const currencies = {
+    enDolar: "$",
+    brReal: "R$",
+  };
   
   export type Language = "en" | "pt";
+  export type Currency = "enDolar" | "brReal";
   
   export const getTranslation = (lang: Language, key: keyof typeof translations.en) => {
-    return translations[lang][key] || key;
+    return translations[lang][key] ?? key;
   };
+
+  export const getCurrency = (currencyCode: Currency) => {
+    return currencies[currencyCode];
+  }
