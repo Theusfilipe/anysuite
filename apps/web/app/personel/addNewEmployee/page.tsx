@@ -125,11 +125,11 @@ export default function NewEmployee() {
         />
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel htmlFor={"outlined-adornment-bloodtype"}>{getTranslation(lang, "bloodType")}</InputLabel>
-          <Select name="bloodType" value={formData.bloodType} onChange={handleChange} label={"outlined-adornment-bloodtype"}>
+          <InputLabel htmlFor="bloodType">{getTranslation(lang, "bloodType")}</InputLabel>
+          <Select name="bloodType" value={formData.bloodType} onChange={handleChange} label={getTranslation(lang, "bloodType")}>
             {bloodTypes.map((type) => (
               <MenuItem key={type} value={type}>
-                {type}
+          {type}
               </MenuItem>
             ))}
           </Select>
