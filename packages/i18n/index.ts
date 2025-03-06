@@ -59,6 +59,9 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       lastMaintenanceDate: "Last Maintenance Date",
       addEquipment: "Add Equipment",
       equipmentName: "Equipment Name",
+      nextMaintenanceDate: "Next Maintenance Date",
+      equipmentInfo: "Equipment Info",
+      equipmentList: "Equipment List",
 
       newSparePart: "New Spare Part",
       sparePartName: "Spare Part Name",
@@ -67,6 +70,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       unitaryCost: "Unitary Cost",
       quantity: "Quantity",
       addSparePart: "Add Spare Part",
+      sparePartDetails: "Spare Part Details",
+      editQuantity: "Edit Quantity",
 
       employee: "Employee",
       date: "Date",
@@ -81,6 +86,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       deleteLine: "Delete Line",
       action: "Action",
       actions: "Actions",
+      moreInfo: "More Info",
+      saveChanges: "Save Changes",
 
       return:"Return",
     },
@@ -146,6 +153,9 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       lastMaintenanceDate: "Data da última manutenção",
       addEquipment: "Adicionar equipamento",
       equipmentName: "Nome do equipamento",
+      nextMaintenanceDate: "Data da próxima manutenção",
+      equipmentInfo: "Informações do equipamento",
+      equipmentList: "Lista de equipamentos",
 
       newSparePart: "Nova peça",
       sparePartName: "Nome da peça",
@@ -154,6 +164,9 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       unitaryCost: "Custo unitário",
       quantity: "Quantidade",
       addSparePart: "Adicionar peça",
+      sparePartDetails: "Detalhes da peça",
+      editQuantity: "Editar quantidade",
+      
 
       startDate: "Data de início",
       endDate: "Data de término",
@@ -167,6 +180,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       deleteLine: "Deletar linha",
       actions: "Ações",
       action: "Ação",
+      moreInfo: "Mais informações",
+      saveChanges: "Salvar alterações",
 
       return:"Retornar",
     },
@@ -184,6 +199,6 @@ const translations: { [key in Language]: { [key: string]: string } } = {
     return translations[lang][key] ?? key;
   };
 
-  export const getCurrency = (currencyCode: Currency) => {
+  export const getCurrencyAdornment = (currencyCode: Currency) => {
     return currencies[currencyCode];
   }
