@@ -92,7 +92,7 @@ export default function EmployeeList() {
                 <TableCell>{employee.bloodType}</TableCell>
                 <TableCell>{getCurrencyAdornment(currency)+ employee.salary}</TableCell>
                 <TableCell>
-                  <Button variant="contained" color="primary" onClick={() => handleEdit(employee.id.toString())}>
+                  <Button variant="contained" color="primary" onClick={() => window.location.href = `/personel/editEmployee`}>
                     {getTranslation(lang, "edit")}
                   </Button>
                 </TableCell>
