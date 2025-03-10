@@ -47,8 +47,8 @@ export default function StockroomEquipmentList() {
                     variant="contained" 
                     color="primary" 
                     onClick={() => window.location.href = equipment.isEquipment 
-                      ? `/stockroom/equipment/equipmentInfo/` 
-                      : `/stockroom/sparePart/sparePartInfo/`
+                      ? `/stockroom/equipment/equipmentEdit/` 
+                      : `/stockroom/sparePart/sparePartEdit/`
                     }
                     > 
                     {getTranslation(lang, "moreInfo")}
