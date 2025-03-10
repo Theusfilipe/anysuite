@@ -31,16 +31,16 @@ export default function Home() {
       <div style={{ display: "flex", gap: "20px" }}>
         <Link href="/maintenance">
           
-            <ButtonLabelAndIcon icon="Handyman" text={getTranslation(lang, "maintenance")}/>
+            <ButtonLabelAndIcon icon="Handyman" text={String(getTranslation(lang, "maintenance"))}/>
               
         </Link>
 
         <Link href="/stockroom">
-          <ButtonLabelAndIcon icon="Inventory" text={getTranslation(lang, "stockroom")}/>
+          <ButtonLabelAndIcon icon="Inventory" text={String(getTranslation(lang, "stockroom"))}/>
         </Link>
 
         <Link href="/personel">
-          <ButtonLabelAndIcon icon="Group" text={getTranslation(lang, "personelControl")}/>
+          <ButtonLabelAndIcon icon="Group" text={String(getTranslation(lang, "personelControl"))}/>
         </Link>
       </div>
     </div>

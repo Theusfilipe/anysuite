@@ -1,3 +1,7 @@
+import { getTranslation } from "../../../../packages/i18n";
+
+const lang = "pt";
+
 export default function Stockroom() {
-    return <h1>Stockroom</h1>;
+    return <h1>{getTranslation(lang,"stockroom")}</h1>;
   }

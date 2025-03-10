@@ -4,7 +4,7 @@ const translations: { [key in Language]: { [key: string]: string } } = {
     en: {
       maintenance: "Maintenance",
       stockroom: "Stockroom",
-      welcome: "Welcome to the Company",
+      welcome: "Welcome",
 
       maintenanceWelcome: "Welcome to the Maintenance Dashboard",
 
@@ -103,7 +103,7 @@ const translations: { [key in Language]: { [key: string]: string } } = {
     pt: {
       maintenance: "Manutenção",
       stockroom: "Almoxarifado",
-      welcome: "Bem-vindo à empresa",
+      welcome: "Bem-vindo",
 
       maintenanceWelcome: "Bem-vindo ao Painel de Manutenção",
 
