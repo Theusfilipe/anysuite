@@ -62,6 +62,15 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       nextMaintenanceDate: "Next Maintenance Date",
       equipmentInfo: "Equipment Info",
       equipmentList: "Equipment List",
+      brand: "Brand",
+      seriesNumber: "Series Number",
+      height: "Height",
+      width: "Width",
+      depth: "Depth",
+      addParameter: "Add Parameter",
+      parameter: "Parameter",
+      value: "Value",
+      
 
       newSparePart: "New Spare Part",
       sparePartName: "Spare Part Name",
@@ -156,6 +165,13 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       nextMaintenanceDate: "Data da próxima manutenção",
       equipmentInfo: "Informações do equipamento",
       equipmentList: "Lista de equipamentos",
+      brand: "Marca",
+      seriesNumber: "Número de série",
+      height: "Altura",
+      width: "Largura",
+      depth: "Profundidade",
+      addParameter: "Adicionar parâmetro",
+
 
       newSparePart: "Nova peça",
       sparePartName: "Nome da peça",
@@ -182,6 +198,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       action: "Ação",
       moreInfo: "Mais informações",
       saveChanges: "Salvar alterações",
+      parameter: "Parâmetro",
+      value: "Valor",
 
       return:"Retornar",
     },
