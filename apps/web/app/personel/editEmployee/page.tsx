@@ -94,7 +94,7 @@ export default function EditEmployee() {
         
         <FormControl fullWidth sx={{ marginBottom: 2 }} disabled={!isEditing}>
           <InputLabel>{getTranslation(lang, "bloodType")}</InputLabel>
-          <Select name="bloodType" value={formData.bloodType} onChange={handleSelectChange}>
+          <Select name="bloodType" value={formData.bloodType} onChange={handleSelectChange} label={getTranslation(lang, "bloodType")}>
             {bloodTypes.map((type) => (
               <MenuItem key={type} value={type}>{type}</MenuItem>
             ))}
@@ -105,6 +105,7 @@ export default function EditEmployee() {
           <InputLabel shrink>{getTranslation(lang, "salary")}</InputLabel>
           <OutlinedInput
             name="salary"
+            label={getTranslation(lang, "salary")}
             value={formData.salary}
             onChange={handleSalaryChange}
             startAdornment={<InputAdornment position="start">{getCurrencyAdornment(currency)}</InputAdornment>}
