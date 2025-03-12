@@ -76,8 +76,9 @@ export default function EditServiceOrder() {
   const [order, setOrder] = useState({
     requests: [],
     equipments: [],
-    startDate: "",
-  });
+    startDate: "2025-01-11",
+    endDate: "",
+    });
 
   const [isEditing, setIsEditing] = useState(true);
   const [isSigned, setIsSigned] = useState(false);
@@ -116,8 +117,15 @@ export default function EditServiceOrder() {
   const toggleSigned = () => {
     setIsEditing(false);
     setIsSigned(true);
+    const today = new Date().toISOString().split("T")[0];
+  
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      endDate: today || "", // Ensure endDate is always a string
+    }));
   };
   
+  const [signedDate, setSignedDate] = useState<string>("");
 
   return (
     <Box sx={{ padding: 3 }}>
@@ -128,8 +136,8 @@ export default function EditServiceOrder() {
 
       {/* Formulário para editar a ordem de serviço */}
       <FormControl fullWidth sx={{ marginBottom: 2 }}>
-        <InputLabel>{getTranslation(lang, "serviceOrder")}</InputLabel>
-        <Select disabled={!isEditing} multiple name="requests" value={order.requests.length ? order.requests : ["1", "2"]} onChange={handleChange}>
+        <InputLabel htmlFor="service-order">{getTranslation(lang, "serviceOrder")}</InputLabel>
+        <Select id="service-order" label={getTranslation(lang,"serviceOrder")} disabled={!isEditing} multiple name="requests" value={order.requests.length ? order.requests : ["1", "2"]} onChange={handleChange}>
           {serviceRequests.map((request) => (
             <MenuItem key={request.id} value={request.id}>
               {`${request.code} - ${request.name} (${request.date})`}
@@ -139,8 +147,8 @@ export default function EditServiceOrder() {
       </FormControl>
 
       <FormControl fullWidth sx={{ marginBottom: 2 }}>
-        <InputLabel>{getTranslation(lang, "equipmentsToBeFixed")}</InputLabel>
-        <Select disabled={!isEditing} multiple name="equipments" value={order.equipments.length ? order.equipments : ["1"]} onChange={handleChange}>
+        <InputLabel htmlFor="equipment-to-fixed">{getTranslation(lang, "equipmentsToBeFixed")}</InputLabel>
+        <Select id="equipment-to-fixed" label={getTranslation(lang,"equipmentsToBeFixed")} disabled={!isEditing} multiple name="equipments" value={order.equipments.length ? order.equipments : ["1"]} onChange={handleChange}>
           {serviceEquipments.map((equipment) => (
             <MenuItem key={equipment.id} value={equipment.id}>
               {`${equipment.code} - ${equipment.name} (${equipment.location})`}
@@ -160,6 +168,20 @@ export default function EditServiceOrder() {
         sx={{ marginBottom: 2 }}
         InputLabelProps={{ shrink: true }}
       />
+
+      {order.endDate && (
+        <TextField 
+          fullWidth
+          label={getTranslation(lang, "endDate")}
+          type="date"
+          name="endDate"
+          disabled={!isEditing}
+          value={order.endDate}
+          onChange={handleChange}
+          sx={{ marginBottom: 2 }}
+          InputLabelProps={{ shrink: true }}
+        />
+      )}
 
       {/* Tabela Editável */}
       <TableContainer component={Paper} sx={{ marginBottom: 2 }}>
