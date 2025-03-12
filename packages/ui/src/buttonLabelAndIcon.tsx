@@ -16,6 +16,7 @@ const iconMap = {
   Handyman: <Handyman />,
   Inventory: <Inventory />,
   Group: <Group />,
+  Print: <Print />,
   Unknown: <Unknown />,
 };
 

@@ -248,7 +248,7 @@ export default function EditServiceOrder() {
       <Button disabled={isSigned} onClick={toggleSigned} variant="contained" color="primary">
         {getTranslation(lang, "sign")}
       </Button>
-      <ButtonLabelAndIcon disabled={!isSigned} icon="Print" onClick={handleCloseOrder} text={String(getTranslation(lang, "print"))} />
+      <ButtonLabelAndIcon disabled={!isSigned} icon="Print" text={String(getTranslation(lang, "print"))} />
     </Box>
   );
 }
