@@ -19,8 +19,10 @@ import {
   TableRow,
   Paper,
   IconButton,
+  Fab,
 } from "@mui/material";
-import { Add, Delete } from "@mui/icons-material";
+import { Add, Delete, Save as SaveIcon, Edit as EditIcon } from "@mui/icons-material";
+import ButtonLabelAndIcon from "@repo/ui/buttonLabelAndIcon";
 
 const lang = "pt";
 
@@ -77,6 +79,9 @@ export default function EditServiceOrder() {
     startDate: "",
   });
 
+  const [isEditing, setIsEditing] = useState(true);
+  const [isSigned, setIsSigned] = useState(false);
+
   const [tableData, setTableData] = useState([
     { employee: "", date: "", startTime: "", endTime: "", equipmentUsed: "", sparePartUsed: "" },
   ]);
@@ -104,14 +109,27 @@ export default function EditServiceOrder() {
     console.log("Ordem de serviço fechada");
   };
 
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const toggleSigned = () => {
+    setIsEditing(false);
+    setIsSigned(true);
+  };
+  
+
   return (
     <Box sx={{ padding: 3 }}>
+
+      
+
       <h2>{getTranslation(lang, "editServiceOrder")}</h2>
 
       {/* Formulário para editar a ordem de serviço */}
       <FormControl fullWidth sx={{ marginBottom: 2 }}>
         <InputLabel>{getTranslation(lang, "serviceOrder")}</InputLabel>
-        <Select multiple name="requests" value={order.requests.length ? order.requests : ["1", "2"]} onChange={handleChange}>
+        <Select disabled={!isEditing} multiple name="requests" value={order.requests.length ? order.requests : ["1", "2"]} onChange={handleChange}>
           {serviceRequests.map((request) => (
             <MenuItem key={request.id} value={request.id}>
               {`${request.code} - ${request.name} (${request.date})`}
@@ -122,7 +140,7 @@ export default function EditServiceOrder() {
 
       <FormControl fullWidth sx={{ marginBottom: 2 }}>
         <InputLabel>{getTranslation(lang, "equipmentsToBeFixed")}</InputLabel>
-        <Select multiple name="equipments" value={order.equipments.length ? order.equipments : ["1"]} onChange={handleChange}>
+        <Select disabled={!isEditing} multiple name="equipments" value={order.equipments.length ? order.equipments : ["1"]} onChange={handleChange}>
           {serviceEquipments.map((equipment) => (
             <MenuItem key={equipment.id} value={equipment.id}>
               {`${equipment.code} - ${equipment.name} (${equipment.location})`}
@@ -136,6 +154,7 @@ export default function EditServiceOrder() {
         label={getTranslation(lang, "startDate")}
         type="date"
         name="startDate"
+        disabled={!isEditing}
         value={order.startDate}
         onChange={handleChange}
         sx={{ marginBottom: 2 }}
@@ -160,43 +179,43 @@ export default function EditServiceOrder() {
             {tableData.map((row, index) => (
               <TableRow key={index}>
                 <TableCell>
-                  <Select value={row.employee} onChange={(e) => handleTableChange(index, "employee", e.target.value)}>
+                  <Select disabled={!isEditing} value={row.employee} onChange={(e) => handleTableChange(index, "employee", e.target.value)}>
                     {employees.map((emp) => (
                       <MenuItem key={emp.id} value={emp.name}>{emp.name}</MenuItem>
                     ))}
                   </Select>
                 </TableCell>
                 <TableCell>
-                  <TextField type="date" value={row.date} onChange={(e) => handleTableChange(index, "date", e.target.value)} />
+                  <TextField disabled={!isEditing} type="date" value={row.date} onChange={(e) => handleTableChange(index, "date", e.target.value)} />
                 </TableCell>
                 <TableCell>
-                  <TextField type="time" value={row.startTime} onChange={(e) => handleTableChange(index, "startTime", e.target.value)} />
+                  <TextField disabled={!isEditing} type="time" value={row.startTime} onChange={(e) => handleTableChange(index, "startTime", e.target.value)} />
                 </TableCell>
                 <TableCell>
-                  <TextField type="time" value={row.endTime} onChange={(e) => handleTableChange(index, "endTime", e.target.value)} />
+                  <TextField disabled={!isEditing} type="time" value={row.endTime} onChange={(e) => handleTableChange(index, "endTime", e.target.value)} />
                 </TableCell>
                 <TableCell>
-                  <Select value={row.equipmentUsed} onChange={(e) => handleTableChange(index, "equipmentUsed", e.target.value)}>
+                  <Select disabled={!isEditing} value={row.equipmentUsed} onChange={(e) => handleTableChange(index, "equipmentUsed", e.target.value)}>
                     {serviceEquipments.map((eq) => (
                       <MenuItem key={eq.id} value={eq.name}>{eq.name}</MenuItem>
                     ))}
                   </Select>
                 </TableCell>
                 <TableCell>
-                  <Select value={row.sparePartUsed} onChange={(e) => handleTableChange(index, "sparePartUsed", e.target.value)}>
+                  <Select disabled={!isEditing} value={row.sparePartUsed} onChange={(e) => handleTableChange(index, "sparePartUsed", e.target.value)}>
                     {spareParts.map((sp) => (
                       <MenuItem key={sp.id} value={sp.name}>{sp.name}</MenuItem>
                     ))}
                   </Select>
                 </TableCell>
                 <TableCell>
-                  <IconButton onClick={() => deleteRow(index)}><Delete /></IconButton>
+                  <IconButton disabled={!isEditing} onClick={() => deleteRow(index)}><Delete /></IconButton>
                 </TableCell>
               </TableRow>
             ))}
             <TableRow>
               <TableCell colSpan={7} align="center">
-                <Button onClick={addRow} startIcon={<Add />}>
+                <Button disabled={!isEditing} onClick={addRow} startIcon={<Add />}>
                   {getTranslation(lang, "addLine")}
                 </Button>
               </TableCell>
@@ -204,6 +223,10 @@ export default function EditServiceOrder() {
           </TableBody>
         </Table>
       </TableContainer>
+      <Button disabled={isSigned} onClick={toggleSigned} variant="contained" color="primary">
+        {getTranslation(lang, "sign")}
+      </Button>
+      <ButtonLabelAndIcon disabled={!isSigned} icon="Print" onClick={handleCloseOrder} text={String(getTranslation(lang, "print"))} />
     </Box>
   );
 }

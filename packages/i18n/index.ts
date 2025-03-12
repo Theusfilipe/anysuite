@@ -97,6 +97,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       actions: "Actions",
       moreInfo: "More Info",
       saveChanges: "Save Changes",
+      sign: "Sign",
+      print: "Print",
 
       return:"Return",
     },
@@ -200,6 +202,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       saveChanges: "Salvar alterações",
       parameter: "Parâmetro",
       value: "Valor",
+      sign: "Assinar",
+      print: "Imprimir",
 
       return:"Retornar",
     },

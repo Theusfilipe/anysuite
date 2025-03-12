@@ -45,7 +45,7 @@ export default function ServiceOrdersList() {
                 <TableCell>{order.status}</TableCell>
                 <TableCell>
                     <Button variant="contained" color="primary" onClick={() => window.location.href = `/maintenance/editServiceOrder/`}>
-                    {getTranslation(lang, "edit")}
+                    {getTranslation(lang, "moreInfo")}
                     </Button>
                 </TableCell>
               </TableRow>

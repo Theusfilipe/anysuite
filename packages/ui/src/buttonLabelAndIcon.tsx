@@ -8,6 +8,7 @@ import ButtonMUI from '@mui/material/Button';
 import Handyman from "@mui/icons-material/Handyman";
 import Inventory from "@mui/icons-material/Inventory2";
 import Group from "@mui/icons-material/Group";
+import Print from "@mui/icons-material/Print";
 
 import Unknown from "@mui/icons-material/DeviceUnknown";
 
@@ -25,7 +26,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   variant?: "primary" | "secondary" | "danger";
-  icon?:"Handyman"|"Inventory"| "Group"| "Unknown";
+  icon?:"Handyman"|"Inventory"| "Group"| "Print" | "Unknown";
   text?: string;
 }
 
