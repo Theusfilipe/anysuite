@@ -25,8 +25,8 @@ const ThemeImage = (props: Props) => {
 
 export default function Home() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", gap: "20px" }}>
-      <h1>{getTranslation(lang, "welcome")}</h1>
+    <div className={styles.pageContainer}>
+      
 
       <div style={{ display: "flex", gap: "20px" }}>
         <Link href="/maintenance">
@@ -47,5 +47,5 @@ export default function Home() {
   );
 }
 
-import { CSSProperties } from "react";
+
 
