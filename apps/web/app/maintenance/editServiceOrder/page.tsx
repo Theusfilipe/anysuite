@@ -72,6 +72,27 @@ const spareParts: SparePart[] = [
   { id: "3", name: "Belt C" },
 ];
 
+const downloadPDF = async () => {
+  try {
+      const response = await fetch("/api/pdf"); // Rota do Next.js
+      if (!response.ok) throw new Error("Erro ao gerar PDF");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      
+      // Criar um link temporário para baixar o arquivo
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "ordem_servico.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+  } catch (error) {
+      console.error("Erro ao baixar PDF:", error);
+  }
+};
+
+
 export default function EditServiceOrder() {
   const [order, setOrder] = useState({
     requests: [],
@@ -248,7 +269,7 @@ export default function EditServiceOrder() {
       <Button disabled={isSigned} onClick={toggleSigned} variant="contained" color="primary">
         {getTranslation(lang, "sign")}
       </Button>
-      <ButtonLabelAndIcon disabled={!isSigned} icon="Print" text={String(getTranslation(lang, "print"))} />
+      <ButtonLabelAndIcon disabled={!isSigned} icon="Print" text={String(getTranslation(lang, "print"))} onClick={downloadPDF} />
     </Box>
   );
 }

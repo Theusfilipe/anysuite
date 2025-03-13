@@ -29,6 +29,9 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       equipmentsToBeFixed: "Equipment to be fixed",
       serviceOrderType: "Service Order Type",
       createServiceOrder: "Create Service Order",
+      filterByEquipment: "Filter by equipment",
+      allStatuses: "All statuses",
+      allTypes: "All types",
 
       equipmentUsed: "Equipment Used",
       sparePartUsed: "Spare Part Used",
@@ -130,6 +133,9 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       equipmentsToBeFixed: "Equipamentos para concertar",
       serviceOrderType: "Tipo de ordem de serviço",
       createServiceOrder: "Criar ordem de serviço",
+      filterByEquipment: "Filtrar por equipamento",
+      allStatuses: "Todos os status",
+      allTypes: "Todos os tipos",
 
       equipmentUsed: "Equipamento utilizado",
       sparePartUsed: "Peça utilizada",
