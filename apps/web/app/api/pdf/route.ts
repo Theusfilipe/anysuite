@@ -1,118 +1,139 @@
-import jsreport from "jsreport-core";
+import { NextResponse } from "next/server";
+import PDFDocument from "pdfkit";
+import fs from "fs";
+import path from "path";
 
 export async function GET() {
-    const report = jsreport();
-    await report.init();
+    const doc = new PDFDocument({ margin: 50 });
+    const chunks: Buffer[] = [];
 
-    const data = {
-        revisao: "D",
-        numero_os: "475",
-        tipo_manutencao: "Corretiva",
-        setor_solicitante: "Manutenção",
-        data_inicial: "24/01/2025",
-        executantes: "Pedro e Raveli",
-        data_final: "24/01/2025",
-        equipamento: {
-            nome: "Compressor",
-            modelo: "N/A",
-            identificacao: "RCS-TVCH-001",
-            tipo: "N/A"
-        },
-        servico: "Instalação do Disjuntor 63A Trifásico e caixa do disjuntor.",
-        materiais: ["Disjuntor 63A tripolar", "Caixa de Disjuntor"],
-        observacoes: "Operacional.",
-        status: "OK",
-        conferente: "Gerente Responsável"
-    };
+    doc.on("data", (chunk) => chunks.push(chunk));
+    doc.on("end", () => {});
 
-    const res = await report.render({
-        template: {
-            content: `<!DOCTYPE html>
-    <html>
-    <head>
-        <style>
-            body { font-family: Arial, sans-serif; }
-            h1 { text-align: center; text-transform: uppercase; }
-            .container { width: 80%; margin: auto; }
-            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-            th, td { border: 1px solid black; padding: 8px; text-align: left; }
-            .section { margin-top: 20px; font-weight: bold; }
-            .signature { margin-top: 50px; text-align: center; }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Ordem de Serviço Interna</h1>
-            <p><strong>Revisão:</strong> {{revisao}}</p>
-            <p><strong>Ordem de Serviço Nº:</strong> {{numero_os}}</p>
-            <p><strong>Tipo de Manutenção:</strong> {{tipo_manutencao}}</p>
-            <p><strong>Setor Solicitante:</strong> {{setor_solicitante}}</p>
-            <p><strong>Data Inicial:</strong> {{data_inicial}}</p>
-            <p><strong>Executantes:</strong> {{executantes}}</p>
-            <p><strong>Data Final:</strong> {{data_final}}</p>
+    const pageWidth = doc.page.width;
+    const margin = 20;
+    const col1X = margin; // First column (left)
+    const col2X = pageWidth / 3; // Second column (center)
+    const col3X = (pageWidth / 3) * 2 - 30; // Third column (moved leftward)
+    let y = 50;
 
-            <div class="section">Equipamento ou Ativo:</div>
-                <table>
-                    <tr><th>Nome</th><td>{{equipamento.nome}}</td></tr>
-                    <tr><th>Modelo</th><td>{{equipamento.modelo}}</td></tr>
-                    <tr><th>Identificação</th><td>{{equipamento.identificacao}}</td></tr>
-                    <tr><th>Tipo</th><td>{{equipamento.tipo}}</td></tr>
-                </table>
+    // Load logo image
+    const logoPath = path.join(process.cwd(), "public", "RCS SUB LOGO.png");
+    if (fs.existsSync(logoPath)) {
+        doc.image(logoPath, col1X, 25, { width: 140 });
+    }
 
-                <div class="section">Serviço a ser executado:</div>
-                    <p>{{servico}}</p>
+    // Title (Center Column)
+    doc.fontSize(16).text("Ordem de Serviço Interna", col2X, y, { width: pageWidth / 3, align: "center" });
 
-                    <div class="section">Materiais Necessários:</div>
-                        <ul>
-                            {{#each materiais}}
-                            <li>{{this}}</li>
-                            {{/each}}
-                        </ul>
+    // Right Column (Shifted Left for Better Spacing)
+    doc.fontSize(12).text("F-RCS-MAN-33", col3X, y, { width: pageWidth / 3 - 40, align: "right" });
+    doc.text("Revisão: D", col3X, y + 15, { width: pageWidth / 3 - 40, align: "right" });
+    y += 50;
 
-                        <div class="section">Observações:</div>
-                        <p>{{observacoes}}</p>
+    // Section: Order Information with Gray Background
+    doc.rect(margin, y, pageWidth - margin * 2, 20).fill("#DDDDDD"); // Gray Background
+    doc.fillColor("black").fontSize(12);
+    doc.text("ORDEM DE SERVIÇO: Nº 475", col1X + 5, y + 5);
+    doc.text("TIPO DE MANUTEÇÃO: Corretiva", col3X, y + 5);
+    y += 20;
 
-                        <div class="section">Status do Equipamento:</div>
-                            <table>
-                                <tr><th>Equipamento</th><th>Status</th><th>Executante</th><th>Conferente</th></tr>
-                                <tr>
-                                    <td>{{equipamento.identificacao}}</td>
-                                    <td>{{status}}</td>
-                                    <td>{{executantes}}</td>
-                                    <td>{{conferente}}</td>
-                                </tr>
-                            </table>
+    // Add a horizontal line
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 10;
 
-                            <div class="signature">
-                                <p>__________________________</p>
-                                <p>Assinatura da Manutenção</p>
-                            </div>
-        
-                            <div class="signature">
-                                <p>__________________________</p>
-                                <p>Assinatura da Gerência</p>
-                            </div>
+    // Section: Additional Details
+    doc.text("Setor Solicitante: Manutenção", col1X, y);
+    doc.text("Data Inicial: 24/01/2025", col3X, y);
+    y += 20;
 
-                            <p style="text-align: center; font-size: 12px;">
-                            RCS SUBAQUÁTICA ENGENHARIA LTDA.<br>
-                            Rod. Amaral Peixoto, km 87, s/n, Lj 16c, Cond. Rodoshop - Vila Capri , Araruama/RJ , CEP 28981-630<br>
-                            Av. das Américas, 171150 , sala 144, bloco A , Rio de Janeiro/RJ CEP 22790-704<br>
-                            CNPJ 08.621.247/0001-37 | Telefone +55 22 3111-0017<br>
-                            www.rcssubaquatica.com.br / contato@rcssubaquatica.com.br
-                        </p>
-                    </div>
-                </body>
-            </html>`,
-            engine: "handlebars",
-            recipe: "chrome-pdf"
-        },
-        data
-    });
+    // Add a horizontal line
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 10;
 
-    return new Response(res.content, {
+    doc.text("Executante pela Manutenção: Pedro e Raveli", col1X, y);
+    doc.text("Data Final: 24/01/2025", col3X, y);
+    y += 20;
+
+    // Add another horizontal line
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 1;
+
+    // Section: Order Information with Gray Background
+    doc.rect(margin, y, pageWidth - margin * 2, 20).fill("#DDDDDD"); // Gray Background
+    doc.fillColor("black").fontSize(12);
+    doc.text("Equipamento ou Ativo:", col1X + 5, y + 5);
+    
+    y += 20;
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 10;
+
+    doc.text("Nome: Compressor", col1X, y);
+    doc.text("Modelo: N/A", col3X, y);
+    y += 20;
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 10;
+
+    doc.text("Identificação: RCS-TVCH-001", col1X, y);
+    doc.text("Tipo: N/A", col3X, y);
+    y += 20;
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 1;
+
+    doc.rect(margin, y, pageWidth - margin * 2, 20).fill("#DDDDDD"); // Gray Background
+    doc.fillColor("black").fontSize(12);
+    doc.text("Serviço a ser executado:", col1X + 5, y + 5);
+
+    y += 20;
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 10;
+
+    doc.text("Instalação do Disjuntor 63A Trifásico e caixa do disjuntor.", col1X, y);
+
+    y += 50;
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 1;
+    doc.rect(margin, y, pageWidth - margin * 2, 20).fill("#DDDDDD"); // Gray Background
+    doc.fillColor("black").fontSize(12);
+    doc.text("Materiais Necessários:", col1X + 5, y + 5);
+    y += 20;
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 10;
+    doc.text("Disjuntor 63A tripolar.", col1X, y);
+    y += 20;
+    doc.text("Caixa de Disjuntor.", col1X, y);
+    y += 40;
+    
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 1;
+    doc.rect(margin, y, pageWidth - margin * 2, 20).fill("#DDDDDD"); // Gray Background
+    
+    doc.fillColor("black").fontSize(12);
+    doc.text("Observações:", col1X + 5, y + 5);
+    y += 20;
+    
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 20;
+    doc.text("Operacional.", col1X, y);
+
+    // Finalize the document
+    doc.end();
+
+    await new Promise((resolve) => doc.on("end", resolve));
+
+    // Create a response with the final buffer
+    const pdfBuffer = Buffer.concat(chunks);
+    return new NextResponse(pdfBuffer, {
         headers: {
             "Content-Type": "application/pdf",
-            "Content-Disposition": "attachment; filename=ordem_servico.pdf"
-        }
+            "Content-Disposition": "attachment; filename=ordem_servico.pdf",
+        },
     });
 }
