@@ -102,6 +102,13 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       saveChanges: "Save Changes",
       sign: "Sign",
       print: "Print",
+      opened: "Opened",
+      inProgress: "In Progress",
+      concluded: "Concluded",
+      pending: "Pending",
+      base: "Base",
+      location: "Location",
+      equipment: "Equipment",
 
       return:"Return",
     },
@@ -121,7 +128,7 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       selectBase: "Selecione uma base",
       locationOfEquipment: "Localização do equipamento",
       nameOfEquipment: "Nome do equipamento",
-      textOfProblem: "Texto do problema",
+      textOfProblem: "Descrição do problema",
       createRequest: "Criar solicitação",
       serviceName: "Nome do serviço",
 
@@ -210,6 +217,15 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       value: "Valor",
       sign: "Assinar",
       print: "Imprimir",
+      opened: "Aberto",
+      inProgress: "Em andamento",
+      concluded: "Concluído",
+      pending: "Pendente",
+      base: "Base",
+      location: "Localização",
+      equipment: "Equipamento",
+
+      noInfoFound: "Nenhuma informação encontrada",
 
       return:"Retornar",
     },
