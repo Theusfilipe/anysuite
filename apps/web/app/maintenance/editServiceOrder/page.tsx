@@ -101,6 +101,7 @@ export default function EditServiceOrder() {
     endDate: "",
     });
 
+  const [isClosed, setIsClosed] = useState(false);
   const [isEditing, setIsEditing] = useState(true);
   const [isSigned, setIsSigned] = useState(false);
 
@@ -132,6 +133,11 @@ export default function EditServiceOrder() {
   };
 
   const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const toggleClosed = () => {
+    setIsClosed(!isClosed);
     setIsEditing(!isEditing);
   };
 
@@ -266,7 +272,10 @@ export default function EditServiceOrder() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button disabled={isSigned} onClick={toggleSigned} variant="contained" color="primary">
+      <Button disabled={isClosed} onClick={toggleClosed} variant="contained" color="primary">
+        Fechar Ordem de Serviço
+      </Button>
+      <Button disabled={isSigned || !isClosed} onClick={toggleSigned} variant="contained" color="primary">
         {getTranslation(lang, "sign")}
       </Button>
       <ButtonLabelAndIcon disabled={!isSigned} icon="Print" text={String(getTranslation(lang, "print"))} onClick={downloadPDF} />

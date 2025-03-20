@@ -120,8 +120,42 @@ export async function GET() {
     y += 20;
     
     doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
-    y += 20;
+    y += 5;
     doc.text("Operacional.", col1X, y);
+    y += 20;
+
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+    y += 1;
+    doc.rect(margin, y, pageWidth - margin * 2, 20).fill("#DDDDDD"); // Gray Background
+    doc.fillColor("black").fontSize(12);
+    doc.text("Responsável.", col1X+5, y+5);
+    y += 20;
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+
+    doc.text("Equipamento", col1X + 5, y + 5);
+
+    doc.text("Status", col1X + 120, y + 5);
+
+    doc.text("Executante", col2X + 5, y + 5);
+
+    doc.text("Conferente", col3X + 5, y + 5);
+
+    y += 20;
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+
+    doc.text("RCS-TVCH-001", col1X + 5, y + 5);
+
+    doc.text("OK", col1X + 120, y + 5);
+
+    y += 20;
+    doc.moveTo(margin, y).lineTo(pageWidth - margin, y).stroke();
+
+    y += 50;
+
+    doc.text("Assinatura da Manutenção", col1X + 30, y + 5);
+    
+    doc.text("Assinatura da Gerência", col3X + 5, y + 5);
+
 
     // Finalize the document
     doc.end();
