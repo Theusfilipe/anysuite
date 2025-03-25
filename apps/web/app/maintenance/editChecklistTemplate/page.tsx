@@ -121,7 +121,7 @@ export default function NewChecklistTemplate() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>{getTranslation(lang, "parameter")}</TableCell>
+              <TableCell>{getTranslation(lang, "activity")}</TableCell>
               
               <TableCell>{getTranslation(lang, "action")}</TableCell>
             </TableRow>
