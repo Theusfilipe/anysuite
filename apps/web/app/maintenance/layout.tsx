@@ -12,6 +12,8 @@ const menuItems = [
   { href: "/maintenance/newServiceRequest", text: getTranslation(lang, "newServiceRequest"), icon:"PostAdd" },
   { href: "/maintenance/newServiceOrder", text: getTranslation(lang, "newServiceOrder"), icon:"AssignmentReturn" },
   { href: "/maintenance/serviceOrderList", text: getTranslation(lang, "serviceOrderList"), icon:"ListAlt"  },
+  { href: "/maintenance/newChecklistTemplate", text: getTranslation(lang, "newChecklistTemplate"), icon: "AddTask" },
+  { href: "/maintenance/listChecklistTemplates", text: getTranslation(lang, "listChecklistTemplates"), icon: "CheckCircle" },
   { href: "/", text: getTranslation(lang, "return"),icon:"ArrowBack" },
 ];
 export default function MaintenanceLayout({ children }: { children: ReactNode }) {

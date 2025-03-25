@@ -25,10 +25,12 @@ import ListItemText from '@mui/material/ListItemText';
 
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import CheckCircle from '@mui/icons-material/CheckCircle';
 import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import UnknownIcon from '@mui/icons-material/NotListedLocation';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
@@ -131,8 +133,10 @@ const getIcon = (iconName: string) => {
     if (iconName === "AddCircle") return <AddCircleIcon />;
     if (iconName === "Inventory") return <Inventory2 />;
     if (iconName === "AddCircleOutline") return <AddCircleOutline />;
-    if  (iconName === "Group") return <Group />;
-    if  (iconName === "PersonAdd") return <PersonAdd />;
+    if (iconName === "Group") return <Group />;
+    if (iconName === "PersonAdd") return <PersonAdd />;
+    if (iconName === "AddTask") return <AddTaskIcon />;
+    if (iconName === "CheckCircle") return <CheckCircle />;
     return <UnknownIcon />; // Ícone padrão caso não encontre
   };
 

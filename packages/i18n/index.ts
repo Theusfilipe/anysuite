@@ -71,6 +71,10 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       width: "Width",
       depth: "Depth",
       addParameter: "Add Parameter",
+      certificateNumber: "Certificate Number",
+      equipmentCode: "Equipment Code",
+      type: "Type",
+      addActivity: "Adicionar atividade",
       parameter: "Parameter",
       value: "Value",
       
@@ -186,7 +190,14 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       width: "Largura",
       depth: "Profundidade",
       addParameter: "Adicionar parâmetro",
+      certificateNumber: "Número do certificado",
+      equipmentCode: "Código do equipamento",
+      type: "Tipo",
+      addActivity: "Adicionar atividade",
+      activity: "Atividade",
 
+      addNewChecklistTemplate: "Adicionar novo modelo de checklist",
+      listChecklistTemplates: "Listar modelos de checklist",
 
       newSparePart: "Nova peça",
       sparePartName: "Nome da peça",
@@ -197,6 +208,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       addSparePart: "Adicionar peça",
       sparePartDetails: "Detalhes da peça",
       editQuantity: "Editar quantidade",
+      
+      templateName: "Nome do modelo",
       
 
       startDate: "Data de início",
