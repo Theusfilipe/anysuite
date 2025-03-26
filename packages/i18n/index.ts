@@ -1,4 +1,4 @@
-import newServiceRequest from "../../apps/web/app/maintenance/newServiceRequest/page";
+
 
 const translations: { [key in Language]: { [key: string]: string } } = {
     en: {
@@ -210,7 +210,12 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       editQuantity: "Editar quantidade",
       
       templateName: "Nome do modelo",
-      
+
+      checklistList: "Lista de Checklist",
+      checklistTemplateList: "Lista de Modelos de Checklist",
+      certificate: "Certificado",
+      equipmentId: "ID do equipamento",
+      checklistDate: "Data do checklist",
 
       startDate: "Data de início",
       endDate: "Data de término",

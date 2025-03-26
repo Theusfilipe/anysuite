@@ -1,6 +1,6 @@
 "use client";
 
-import { getTranslation } from "../../../../../packages/i18n";
+import { getTranslation } from "../../../../../../packages/i18n";
 import { useState } from "react";
 import {
   Box,

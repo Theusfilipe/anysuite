@@ -8,12 +8,13 @@ import Link from "next/link";
 const lang = "pt";
 
 const menuItems = [
-  { href: "/maintenance/serviceRequestList", text: getTranslation(lang, "serviceRequestList") , icon: "Assignment" },
-  { href: "/maintenance/newServiceRequest", text: getTranslation(lang, "newServiceRequest"), icon:"PostAdd" },
-  { href: "/maintenance/newServiceOrder", text: getTranslation(lang, "newServiceOrder"), icon:"AssignmentReturn" },
-  { href: "/maintenance/serviceOrderList", text: getTranslation(lang, "serviceOrderList"), icon:"ListAlt"  },
-  { href: "/maintenance/newChecklistTemplate", text: getTranslation(lang, "newChecklistTemplate"), icon: "AddTask" },
-  { href: "/maintenance/listChecklistTemplates", text: getTranslation(lang, "listChecklistTemplates"), icon: "CheckCircle" },
+  { href: "/maintenance/serviceRequest/serviceRequestList", text: getTranslation(lang, "serviceRequestList") , icon: "Assignment" },
+  { href: "/maintenance/serviceRequest/newServiceRequest", text: getTranslation(lang, "newServiceRequest"), icon:"PostAdd" },
+  { href: "/maintenance/serviceOrder/newServiceOrder", text: getTranslation(lang, "newServiceOrder"), icon:"AssignmentReturn" },
+  { href: "/maintenance/serviceOrder/serviceOrderList", text: getTranslation(lang, "serviceOrderList"), icon:"ListAlt"  },
+  { href: "/maintenance/checklistTemplate/newChecklistTemplate", text: getTranslation(lang, "newChecklistTemplate"), icon: "AddTask" },
+  { href: "/maintenance/checklistTemplate/listChecklistTemplates", text: getTranslation(lang, "listChecklistTemplates"), icon: "CheckCircle" },
+  { href: "/maintenance/checklist/listChecklist", text: getTranslation(lang, "listChecklist"), icon: "Checklist" },
   { href: "/", text: getTranslation(lang, "return"),icon:"ArrowBack" },
 ];
 export default function MaintenanceLayout({ children }: { children: ReactNode }) {

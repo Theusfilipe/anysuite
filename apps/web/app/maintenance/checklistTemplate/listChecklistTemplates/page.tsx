@@ -1,6 +1,6 @@
 "use client";
 
-import { getTranslation } from "../../../../../packages/i18n/index";
+import { getTranslation } from "../../../../../../packages/i18n/index";
 import { useState, useEffect } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, MenuItem, Select, TextField, Button } from "@mui/material";
 import { get } from "http";
@@ -148,7 +148,7 @@ export default function ChecklistTemplatesList() {
                   <TableCell>{template.type}</TableCell>
                   <TableCell>{template.quantityOfDaysBetweenMaintenance}</TableCell>
                   <TableCell>
-                    <Button variant="contained" color="primary" onClick={() => window.location.href = `/maintenance/editChecklistTemplate/`}>
+                    <Button variant="contained" color="primary" onClick={() => window.location.href = `/maintenance/checklistTemplate/editChecklistTemplate/`}>
                     {getTranslation(lang, "moreInfo")}
                     </Button>
                 </TableCell>
