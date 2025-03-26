@@ -41,7 +41,7 @@ const initialChecklist: Checklist = {
   equipmentName: "Compressor X",
   checklistDate: "2025-03-01",
   quantityOfDaysBetweenMaintenance: 90,
-  status: "opened",
+  status: "Aberta",
 };
 
 export default function EditChecklist() {
@@ -51,6 +51,29 @@ export default function EditChecklist() {
     { item: "Pressão do óleo" },
     { item: "Verificação vazamentos" },
     { item: "Tensão nas Correias" },
+    { item: "Correia sobressalente" },
+    { item: "Fixação no Skid" },
+    { item: "Válvulas de Segurança" },
+    { item: "Bico e Bomba Injetora" },
+    { item: "Fixação do motor/compressor" },
+    { item: "Filtros de Ar de aspiração" },
+    { item: "Mangotes" },
+    { item: "Serpentina" },
+    { item: "Filtro de Combustível" },
+    { item: "Filtro de Condensação" },
+    { item: "Comando elétrico e manual" },
+    { item: "Horas Trabalhadas" },
+    { item: "Plaqueta de identificação" },
+    { item: "Exame Visual da Válvula de Alívio" },
+    { item: "Teste de Função na Configuração de Alívio" },
+    { item: "Teste das Tubulações" },
+    { item: "Exame Visual das Tubulações" },
+    { item: "Teste de vazamento de gás" },
+    { item: "Exame Visual Receptores" },
+    { item: "Exame Visual Elétrica" },
+    { item: "Exame Visual Operacional" },
+    { item: "Taxa de Entrega e Pressão" },
+    { item: "Pureza da Saída" },
   ]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
