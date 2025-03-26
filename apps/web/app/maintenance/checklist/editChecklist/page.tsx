@@ -17,6 +17,9 @@ import {
   TableRow,
   Paper,
   IconButton,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
 } from "@mui/material";
 import { Add, Delete, Save as SaveIcon, Edit as EditIcon } from "@mui/icons-material";
 
@@ -48,32 +51,32 @@ export default function EditChecklist() {
   const [formData, setFormData] = useState(initialChecklist);
   const [isEditing, setIsEditing] = useState(false);
   const [checklistData, setChecklistData] = useState([
-    { item: "Pressão do óleo" },
-    { item: "Verificação vazamentos" },
-    { item: "Tensão nas Correias" },
-    { item: "Correia sobressalente" },
-    { item: "Fixação no Skid" },
-    { item: "Válvulas de Segurança" },
-    { item: "Bico e Bomba Injetora" },
-    { item: "Fixação do motor/compressor" },
-    { item: "Filtros de Ar de aspiração" },
-    { item: "Mangotes" },
-    { item: "Serpentina" },
-    { item: "Filtro de Combustível" },
-    { item: "Filtro de Condensação" },
-    { item: "Comando elétrico e manual" },
-    { item: "Horas Trabalhadas" },
-    { item: "Plaqueta de identificação" },
-    { item: "Exame Visual da Válvula de Alívio" },
-    { item: "Teste de Função na Configuração de Alívio" },
-    { item: "Teste das Tubulações" },
-    { item: "Exame Visual das Tubulações" },
-    { item: "Teste de vazamento de gás" },
-    { item: "Exame Visual Receptores" },
-    { item: "Exame Visual Elétrica" },
-    { item: "Exame Visual Operacional" },
-    { item: "Taxa de Entrega e Pressão" },
-    { item: "Pureza da Saída" },
+    { item: "Pressão do óleo", value: "conforme", observation: "" },
+    { item: "Verificação vazamentos", value: "inconforme", observation: "Vazamento identificado na válvula principal" },
+    { item: "Tensão nas Correias", value: "conforme", observation: "" },
+    { item: "Correia sobressalente", value: "inconforme", observation: "Correia de reserva ausente" },
+    { item: "Fixação no Skid", value: "conforme", observation: "" },
+    { item: "Válvulas de Segurança", value: "conforme", observation: "" },
+    { item: "Bico e Bomba Injetora", value: "inconforme", observation: "Bico injetor entupido" },
+    { item: "Fixação do motor/compressor", value: "conforme", observation: "" },
+    { item: "Filtros de Ar de aspiração", value: "conforme", observation: "" },
+    { item: "Mangotes", value: "inconforme", observation: "Mangote apresentando rachaduras" },
+    { item: "Serpentina", value: "conforme", observation: "" },
+    { item: "Filtro de Combustível", value: "conforme", observation: "" },
+    { item: "Filtro de Condensação", value: "inconforme", observation: "Filtro saturado, precisa ser trocado" },
+    { item: "Comando elétrico e manual", value: "conforme", observation: "" },
+    { item: "Horas Trabalhadas", value: "conforme", observation: "" },
+    { item: "Plaqueta de identificação", value: "inconforme", observation: "Plaqueta desgastada, difícil de ler" },
+    { item: "Exame Visual da Válvula de Alívio", value: "conforme", observation: "" },
+    { item: "Teste de Função na Configuração de Alívio", value: "conforme", observation: "" },
+    { item: "Teste das Tubulações", value: "conforme", observation: "" },
+    { item: "Exame Visual das Tubulações", value: "inconforme", observation: "Pequenos pontos de corrosão detectados" },
+    { item: "Teste de vazamento de gás", value: "inconforme", observation: "Detectado vazamento na conexão do cilindro" },
+    { item: "Exame Visual Receptores", value: "conforme", observation: "" },
+    { item: "Exame Visual Elétrica", value: "conforme", observation: "" },
+    { item: "Exame Visual Operacional", value: "conforme", observation: "" },
+    { item: "Taxa de Entrega e Pressão", value: "inconforme", observation: "Pressão abaixo do recomendado" },
+    { item: "Pureza da Saída", value: "conforme", observation: "" },
   ]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,21 +87,19 @@ export default function EditChecklist() {
     });
   };
 
-  const handleDataChange = (index: number, value: string) => {
+  const handleDataChange = (index: number, field: "value" | "observation", newValue: string) => {
     const newData = [...checklistData];
     if (newData[index]) {
-      newData[index]["item"] = value;
+      newData[index][field] = newValue;
+  
+      // Se o valor for alterado para "conforme", limpa a observação
+      if (field === "value" && newValue === "conforme") {
+        newData[index]["observation"] = "";
+      }
     }
     setChecklistData(newData);
   };
 
-  const addRow = () => {
-    setChecklistData([...checklistData, { item: "" }]);
-  };
-
-  const deleteRow = (index: number) => {
-    setChecklistData(checklistData.filter((_, i) => i !== index));
-  };
 
   const toggleEdit = () => {
     setIsEditing(!isEditing);
@@ -141,27 +142,39 @@ export default function EditChecklist() {
           <TableHead>
             <TableRow>
               <TableCell>{getTranslation(lang, "activity")}</TableCell>
-              <TableCell>{getTranslation(lang, "action")}</TableCell>
+              <TableCell>{getTranslation(lang, "value")}</TableCell>
+              <TableCell>{getTranslation(lang, "observation")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {checklistData.map((row, index) => (
               <TableRow key={index}>
                 <TableCell>
-                  <OutlinedInput value={row.item} onChange={(e) => handleDataChange(index, e.target.value)} disabled={!isEditing} />
+                  {row.item}
                 </TableCell>
                 <TableCell>
-                  <IconButton onClick={() => deleteRow(index)} disabled={!isEditing}><Delete /></IconButton>
+                    <FormControl>
+                    <RadioGroup
+                      aria-labelledby={`${index}-radio-buttons-group`}
+                      name={`${index}-radio-buttons-group`}
+                      value={row.value}
+                      onChange={(e) => handleDataChange(index, "value", e.target.value)}
+                    >
+                      <FormControlLabel disabled={!isEditing} value="conforme" control={<Radio />} label="conforme" />
+                      <FormControlLabel disabled={!isEditing} value="inconforme" control={<Radio />} label="inconforme" />
+                    </RadioGroup>
+                    </FormControl>
+                </TableCell>
+                <TableCell>
+                    <OutlinedInput
+                    value={row.observation}
+                    onChange={(e) => handleDataChange(index, "observation", e.target.value)}
+                    disabled={!isEditing}
+                    />
                 </TableCell>
               </TableRow>
             ))}
-            {isEditing && (
-              <TableRow>
-                <TableCell colSpan={2} align="center">
-                  <Button onClick={addRow} startIcon={<Add />}>{getTranslation(lang, "addParameter")}</Button>
-                </TableCell>
-              </TableRow>
-            )}
+            
           </TableBody>
         </Table>
       </TableContainer>

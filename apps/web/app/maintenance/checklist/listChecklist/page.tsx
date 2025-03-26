@@ -99,7 +99,7 @@ export default function ChecklistList() {
                   <TableCell>{checklist.quantityOfDaysBetweenMaintenance}</TableCell>
                   <TableCell>{checklist.status}</TableCell>
                   <TableCell>
-                    <Button variant="contained" color="primary" onClick={() => window.location.href = `/maintenance/checklistTemplate/editChecklist`}>
+                    <Button variant="contained" color="primary" onClick={() => window.location.href = `/maintenance/checklist/editChecklist`}>
                       {getTranslation(lang, "moreInfo")}
                     </Button>
                   </TableCell>
