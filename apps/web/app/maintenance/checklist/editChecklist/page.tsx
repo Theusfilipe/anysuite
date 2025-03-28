@@ -22,6 +22,7 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { Add, Delete, Save as SaveIcon, Edit as EditIcon } from "@mui/icons-material";
+import ButtonLabelAndIcon from "@repo/ui/buttonLabelAndIcon";
 
 const lang = "pt";
 
@@ -49,7 +50,7 @@ const initialChecklist: Checklist = {
 
 export default function EditChecklist() {
   const [formData, setFormData] = useState(initialChecklist);
-  const [isEditing, setIsEditing] = useState(false);
+  
   const [checklistData, setChecklistData] = useState([
     { item: "Pressão do óleo", value: "conforme", observation: "" },
     { item: "Verificação vazamentos", value: "inconforme", observation: "Vazamento identificado na válvula principal" },
@@ -79,6 +80,27 @@ export default function EditChecklist() {
     { item: "Pureza da Saída", value: "conforme", observation: "" },
   ]);
 
+
+  const [isClosed, setIsClosed] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
+  const [isSigned, setIsSigned] = useState(false);
+
+  const toggleClosed = () => {
+    setIsClosed(!isClosed);
+    setIsEditing(!isEditing);
+  };
+
+  const toggleSigned = () => {
+    setIsEditing(false);
+    setIsSigned(true);
+    const today = new Date().toISOString().split("T")[0];
+  
+    //setOrder((prevOrder) => ({
+    //  ...prevOrder,
+    //  endDate: today || "", // Ensure endDate is always a string
+    //}));
+  };
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -178,6 +200,13 @@ export default function EditChecklist() {
           </TableBody>
         </Table>
       </TableContainer>
+      <Button disabled={isClosed} onClick={toggleClosed} variant="contained" color="primary">
+              Fechar Checklist
+            </Button>
+            <Button disabled={isSigned || !isClosed} onClick={toggleSigned} variant="contained" color="primary">
+              {getTranslation(lang, "sign")}
+            </Button>
+      <ButtonLabelAndIcon disabled={!isSigned} icon="Print" text={String(getTranslation(lang, "print"))}  />
     </Box>
   );
-}
+}//onClick={downloadPDF}
