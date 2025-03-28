@@ -156,7 +156,10 @@ export default function EditServiceOrder() {
 
   return (
     <Box sx={{ padding: 3 }}>
-
+      
+      <Fab color={isEditing ? "primary" : "secondary"} disabled={isSigned} onClick={toggleEdit} sx={{ position: "fixed", top: 80, right: 30 }}>
+        {isEditing ? <SaveIcon /> : <EditIcon />}
+      </Fab>
       
 
       <h2>{getTranslation(lang, "editServiceOrder")}</h2>
