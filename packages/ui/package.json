@@ -7,7 +7,8 @@
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
     "./sidebar": "./src/sidebar.tsx",
-    "./inputSelect": "./src/inputSelect.tsx"
+    "./inputSelect": "./src/inputSelect.tsx",
+    "./fullcalendar": "./src/fullcalendar.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

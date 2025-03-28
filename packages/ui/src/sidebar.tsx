@@ -35,6 +35,8 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
 
+import Today from '@mui/icons-material/Today';
+
 import Checklist from '@mui/icons-material/Checklist';
 import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 
@@ -142,6 +144,7 @@ const getIcon = (iconName: string) => {
     if (iconName === "CheckCircle") return <CheckCircle />;
     if (iconName === "Checklist") return <Checklist />
     if (iconName === "ChecklistAdd") return <PlaylistAddCircleIcon />
+    if (iconName === "Today") return <Today />;
     return <UnknownIcon />; // Ícone padrão caso não encontre
   };
 

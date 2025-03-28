@@ -16,6 +16,7 @@ const menuItems = [
   { href: "/maintenance/checklistTemplate/listChecklistTemplates", text: getTranslation(lang, "listChecklistTemplates"), icon: "CheckCircle" },
   { href: "/maintenance/checklist/listChecklist", text: getTranslation(lang, "listChecklist"), icon: "Checklist" },
   { href: "/maintenance/checklist/createChecklist", text: getTranslation(lang, "createChecklist"), icon: "ChecklistAdd" },
+  { href: "/maintenance/calendar", text: getTranslation(lang, "calendar"), icon: "Today" },
   { href: "/", text: getTranslation(lang, "return"),icon:"ArrowBack" },
 ];
 export default function MaintenanceLayout({ children }: { children: ReactNode }) {
