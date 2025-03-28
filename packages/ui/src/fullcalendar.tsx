@@ -7,10 +7,12 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // Enables drag/drop
 import { EventInput } from "@fullcalendar/core";
 
-export default function FullCalendarComponent() {
-  const [events, setEvents] = useState<EventInput[]>([
-    { title: "Meeting", start: new Date().toISOString() }, // Example event
-  ]);
+interface CalendarProps {
+  events: EventInput[];
+}
+
+export default function FullCalendarComponent({ events: initialEvents }: CalendarProps) {
+  const [events, setEvents] = useState<EventInput[]>(initialEvents);
 
   const handleDateClick = (info: any) => {
     const newEvent = {
@@ -27,6 +29,14 @@ export default function FullCalendarComponent() {
       events={events}
       dateClick={handleDateClick} // Click to add events
       editable={true} // Allow drag & drop
+      height="100%"
+      headerToolbar= {
+        {
+          start: "prev,next today",
+          center: "title",
+          end: "dayGridMonth,timeGridWeek",
+        }
+      }
     />
   );
 }

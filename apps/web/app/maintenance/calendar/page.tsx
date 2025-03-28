@@ -1,5 +1,16 @@
 import FullCalendarComponent from "@repo/ui/fullcalendar";
 
 export default function CalendarPage() {
-  return <FullCalendarComponent />;
+
+    const inspectionEvents = [
+        { title: "Inspection - Ship A", start: "2025-04-05T10:00:00", end: "2025-04-05T12:00:00" },
+        { title: "Inspection - Platform B", start: "2025-04-10T09:00:00", end: "2025-04-10T11:30:00" },
+        { title: "Inspection - Dock C", start: "2025-04-15T14:00:00", end: "2025-04-15T16:00:00" },
+      ];
+
+  return (
+  <div style={{ height: "80vh", width: "160vh" , display: "flex", flexDirection: "column" }}>
+    <FullCalendarComponent events={inspectionEvents} />
+  </div>);
+  
 }
