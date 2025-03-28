@@ -131,26 +131,26 @@ export default function CreateChecklist() {
       <form>
         <FormControl variant="outlined" fullWidth sx={{ marginBottom: 2 }}>
           <InputLabel>{getTranslation(lang, "type")}</InputLabel>
-            <Select name="type" value={formData.type} onChange={handleChange}>
+            <Select name="type" value={formData.type} onChange={handleChange} label={getTranslation(lang, "type")}>
               <MenuItem value="Compressor Diesel">Compressor Diesel</MenuItem>
               <MenuItem value="Umbilical de Mergulho">Umbilical de Mergulho</MenuItem>
             </Select>
         </FormControl>
         <FormControl variant="outlined" fullWidth sx={{ marginBottom: 2 }}>
           <InputLabel>{getTranslation(lang, "certificate")}</InputLabel>
-          <OutlinedInput name="certificate" value={formData.certificate} onChange={handleChange} />
+          <OutlinedInput name="certificate" value={formData.certificate} onChange={handleChange} label={getTranslation(lang, "certificate")} />
         </FormControl>
         <FormControl variant="outlined" fullWidth sx={{ marginBottom: 2 }}>
           <InputLabel>{getTranslation(lang, "equipmentId")}</InputLabel>
-          <OutlinedInput name="equipmentId" value={formData.equipmentId} onChange={handleChange} />
+          <OutlinedInput name="equipmentId" value={formData.equipmentId} onChange={handleChange} label={getTranslation(lang, "equipmentId")} />
         </FormControl>
         <FormControl variant="outlined" fullWidth sx={{ marginBottom: 2 }}>
           <InputLabel>{getTranslation(lang, "equipmentName")}</InputLabel>
-          <OutlinedInput name="equipmentName" value={formData.equipmentName} onChange={handleChange} />
+          <OutlinedInput name="equipmentName" value={formData.equipmentName} onChange={handleChange} label={getTranslation(lang, "equipmentName")} />
         </FormControl>
         <FormControl variant="outlined" fullWidth sx={{ marginBottom: 2 }}>
           <InputLabel>{getTranslation(lang, "quantityOfDaysBetweenMaintenance")}</InputLabel>
-          <OutlinedInput name="quantityOfDaysBetweenMaintenance" type="number" value={formData.quantityOfDaysBetweenMaintenance} onChange={handleChange}/>
+          <OutlinedInput name="quantityOfDaysBetweenMaintenance" type="number" label={getTranslation(lang, "quantityOfDaysBetweenMaintenance")} value={formData.quantityOfDaysBetweenMaintenance} onChange={handleChange}/>
         </FormControl>
       </form>
 
