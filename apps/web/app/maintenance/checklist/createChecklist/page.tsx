@@ -72,6 +72,22 @@ const compressorDieselChecklist = [
   { item: "Taxa de Entrega e Pressão", value: "", observation: "" },
   { item: "Pureza da Saída", value: "", observation: "" },
 ];
+const umbilicalMergulhoChecklist = [
+  { item: "Terminais", value: "", observation: "" },
+  { item: "Empate", value: "", observation: "" },
+  { item: "Gaiolas", value: "", observation: "" },
+  { item: "Mosquetão", value: "", observation: "" },
+  { item: "Proteção Espiral", value: "", observation: "" },
+  { item: "Cabo de Vida", value: "", observation: "" },
+  { item: "Identificação", value: "", observation: "" },
+  { item: "Pneumo", value: "", observation: "" },
+  { item: "Exame visual - equip. elétrico", value: "", observation: "" },
+  { item: "Teste de função - equip. elétrico", value: "", observation: "" },
+  { item: "Teste de continuidade e resistência de cabos - equip. elétrico", value: "", observation: "" },
+  { item: "Exame visual - mangueira", value: "", observation: "" },
+  { item: "Teste vazamento pressão máxima - mangueira", value: "", observation: "" }
+];
+
 
 
 export default function CreateChecklist() {
@@ -85,6 +101,9 @@ export default function CreateChecklist() {
     if (name === "type") {
       if (value === "Compressor Diesel") {
         setChecklistData(compressorDieselChecklist);
+      }
+      if (value === "Umbilical de Mergulho") {
+        setChecklistData(umbilicalMergulhoChecklist);
       } else {
         setChecklistData([]); // Caso queira resetar se outro tipo for escolhido
       }
@@ -114,6 +133,7 @@ export default function CreateChecklist() {
           <InputLabel>{getTranslation(lang, "type")}</InputLabel>
             <Select name="type" value={formData.type} onChange={handleChange}>
               <MenuItem value="Compressor Diesel">Compressor Diesel</MenuItem>
+              <MenuItem value="Umbilical de Mergulho">Umbilical de Mergulho</MenuItem>
             </Select>
         </FormControl>
         <FormControl variant="outlined" fullWidth sx={{ marginBottom: 2 }}>
