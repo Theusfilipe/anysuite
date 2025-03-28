@@ -129,7 +129,7 @@ export default function EditChecklist() {
 
   return (
     <Box sx={{ padding: 3 }}>
-      <Fab color={isEditing ? "primary" : "secondary"} onClick={toggleEdit} sx={{ position: "fixed", top: 80, right: 30 }}>
+      <Fab color={isEditing ? "primary" : "secondary"} disabled={isSigned} onClick={toggleEdit} sx={{ position: "fixed", top: 80, right: 30 }}>
         {isEditing ? <SaveIcon /> : <EditIcon />}
       </Fab>
       <form>
