@@ -249,18 +249,12 @@ const translations: { [key in Language]: { [key: string]: string } } = {
     },
   };
 
-  const currencies = {
-    enDolar: "$",
-    brReal: "R$",
-  };
+
   
   export type Language = "en" | "pt";
-  export type Currency = "enDolar" | "brReal";
+
   
   export const getTranslation = (lang: Language, key: keyof typeof translations.en) => {
     return translations[lang][key] ?? key;
   };
 
-  export const getCurrencyAdornment = (currencyCode: Currency) => {
-    return currencies[currencyCode];
-  }

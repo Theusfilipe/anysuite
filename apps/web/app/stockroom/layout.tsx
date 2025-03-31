@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { getTranslation } from "./../../../../packages/i18n/index";
+import { getTranslation } from "../../../../packages/i18n/src/getTranslation";
 import Sidebar from "@repo/ui/sidebar";
 
 const lang = "pt";

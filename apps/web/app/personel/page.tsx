@@ -1,4 +1,4 @@
-import { getTranslation } from "./../../../../packages/i18n/index";
+import { getTranslation } from "../../../../packages/i18n/src/getTranslation";
 
 const lang = "pt";
 

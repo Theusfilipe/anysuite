@@ -1,6 +1,6 @@
 "use client";
 
-import { getCurrencyAdornment, getTranslation } from "./../../../../../packages/i18n/index";
+import { getCurrencyAdornment, getTranslation } from "../../../../../packages/i18n/src/getTranslation";
 import { useState } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField } from "@mui/material";
 import Link from "next/link";

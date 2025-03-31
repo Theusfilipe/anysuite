@@ -1,6 +1,6 @@
 "use client";
 
-import { getCurrencyAdornment, getTranslation } from "./../../../../../packages/i18n/index";
+import { getCurrencyAdornment, getTranslation } from "../../../../../packages/i18n/src/getTranslation";
 import { useState } from "react";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Button, Input, InputAdornment, OutlinedInput } from "@mui/material";
 

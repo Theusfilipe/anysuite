@@ -1,6 +1,6 @@
 "use client";
 
-import { getTranslation } from "../../../../../../packages/i18n/index";
+import { getTranslation } from "../../../../../../packages/i18n/src/getTranslation";
 import { useState, useEffect } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, MenuItem, Select, TextField, Button } from "@mui/material";
 import { get } from "http";

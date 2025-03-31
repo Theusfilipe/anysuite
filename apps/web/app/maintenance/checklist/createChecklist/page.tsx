@@ -1,6 +1,7 @@
 "use client";
 
-import { getTranslation } from "../../../../../../packages/i18n";
+
+import { getTranslation } from "@repo/i18n/getTranslation";
 import { useState } from "react";
 import {
   Box,

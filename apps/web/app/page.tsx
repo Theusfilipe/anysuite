@@ -3,7 +3,7 @@ import  ButtonLabelAndIcon  from "@repo/ui/buttonLabelAndIcon";
 import styles from "./page.module.css";
 import Link from "next/link";
 
-import { getTranslation } from "./../../../packages/i18n/index";
+import { getTranslation } from "../../../packages/i18n/src/getTranslation";
 
 const lang = "pt";
 

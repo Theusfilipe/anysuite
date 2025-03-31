@@ -12,7 +12,7 @@ export default function CalendarPage() {
 
   return (
   <div style={{ height: "80vh", width: "160vh" , display: "flex", flexDirection: "column" }}>
-    <GlobalStyles styles={{ ".fc-toolbar-title": { textTransform: "capitalize !important" } }} />
+   
     <FullCalendarComponent events={inspectionEvents} />
   </div>);
   
