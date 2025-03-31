@@ -1,6 +1,7 @@
 "use client";
 
-import { getTranslation } from "../../../../../packages/i18n/src/getTranslation";
+import { getTranslation } from "@repo/i18n/getTranslation";
+
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
 
 const lang = "pt";

@@ -4,7 +4,7 @@
     "private": true,
     "exports": {
       "./getTranslation": "./src/getTranslation.ts",
-      "./getCurrencyAdornment": "./src/getCurrencyAdornments.ts"
+      "./getCurrencyAdornment": "./src/getCurrencyAdornment.ts"
       
     },
     "scripts": {

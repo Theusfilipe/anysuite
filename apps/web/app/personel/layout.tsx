@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from "react";
-import { getTranslation } from "../../../../packages/i18n/src/getTranslation";
+import { getTranslation } from "@repo/i18n/getTranslation";
 
 import Sidebar from "@repo/ui/sidebar";
 

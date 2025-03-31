@@ -1,6 +1,7 @@
 "use client";
 
-import { getTranslation } from "../../../../../packages/i18n/src/getTranslation";
+import { getTranslation } from "@repo/i18n/getTranslation";
+
 import { useState } from "react";
 import { Box, TextField, Button, FormControl, InputLabel, OutlinedInput, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import Delete from '@mui/icons-material/Delete';
