@@ -14,9 +14,10 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.7",
-    "@repo/ui": "*",
     "@repo/i18n": "*",
+    "@repo/ui": "*",
     "next": "^15.1.6",
+    "next-auth": "^4.24.11",
     "pdfkit": "^0.16.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

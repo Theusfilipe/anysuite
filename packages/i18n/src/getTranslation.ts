@@ -242,6 +242,8 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       base: "Base",
       location: "Localização",
       equipment: "Equipamento",
+      user: "Usuário",
+      password: "Senha",
 
       noInfoFound: "Nenhuma informação encontrada",
 
