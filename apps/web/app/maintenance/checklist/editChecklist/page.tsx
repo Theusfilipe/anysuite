@@ -24,6 +24,9 @@ import {
 import { Add, Delete, Save as SaveIcon, Edit as EditIcon } from "@mui/icons-material";
 import ButtonLabelAndIcon from "@repo/ui/buttonLabelAndIcon";
 
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+
 const lang = "pt";
 
 interface Checklist {
@@ -49,6 +52,14 @@ const initialChecklist: Checklist = {
 };
 
 export default function EditChecklist() {
+  const{ data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/api/auth/callback/credentials");
+    }
+  });
+
+
   const [formData, setFormData] = useState(initialChecklist);
   
   const [checklistData, setChecklistData] = useState([

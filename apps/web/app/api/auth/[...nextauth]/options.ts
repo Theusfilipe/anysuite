@@ -13,7 +13,8 @@ export const options : NextAuthOptions = {
             password: { label: getTranslation(lang, "password")+":", type: "password" }
         },
         async authorize(credentials) {
-            const user = {id:"42", name:"Dave", password:"next"};
+            const user = {id:"42", name:"Dave", password:"next", role:"admin"};
+            // You could fetch from an external API here
             const { username, password } = credentials as { username: string; password: string };
             if(credentials?.username === user.name && credentials?.password === user.password) {
                 return user;
@@ -22,5 +23,21 @@ export const options : NextAuthOptions = {
             }
         }
     })
-  ]
+  ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+      return token;
+    },
+    //for client side session
+    async session({ session, token }) {
+      if (session?.user) {
+        session.user.role = token.role;
+      }
+      return session;
+    },
+  }
 }
