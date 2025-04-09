@@ -30,6 +30,7 @@
     "jsreport-chrome-pdf": "^1.10.0",
     "jsreport-core": "^2.10.1",
     "jsreport-handlebars": "^2.1.0",
+    "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

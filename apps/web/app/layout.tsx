@@ -4,6 +4,7 @@ import "./globals.css";
 
 import theme from "./theme";
 import { ThemeProvider } from '@mui/material/styles';
+import AuthProvider from "./context/AuthProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,11 +29,14 @@ export default function RootLayout({
 }>) {
   return (
     <ThemeProvider theme={theme}>
-      <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
+      <AuthProvider>
+        <html lang="en">
+          <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            {children}
+          </body>
+        </html>
+      </AuthProvider>
+      
     </ThemeProvider>
     
   );
