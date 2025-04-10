@@ -23,6 +23,8 @@ import {
 } from "@mui/material";
 import { Add, Delete, Save as SaveIcon, Edit as EditIcon } from "@mui/icons-material";
 import ButtonLabelAndIcon from "@repo/ui/buttonLabelAndIcon";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const lang = "pt";
 
@@ -94,6 +96,14 @@ const downloadPDF = async () => {
 
 
 export default function EditServiceOrder() {
+
+  const{ data: session } = useSession({
+      required: true,
+      onUnauthenticated() {
+        redirect("/api/auth/callback/credentials");
+      }
+    });
+
   const [order, setOrder] = useState({
     requests: [],
     equipments: [],

@@ -3,10 +3,20 @@
 import { getTranslation } from "@repo/i18n/getTranslation";
 import { useState } from "react";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Button } from "@mui/material";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const lang = "pt";
 
 export default function newServiceRequest() {
+
+  const{ data: session } = useSession({
+      required: true,
+      onUnauthenticated() {
+        redirect("/api/auth/callback/credentials");
+      }
+    });
+
   const [formData, setFormData] = useState({
     base: "",
     location: "",

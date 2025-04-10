@@ -3,6 +3,8 @@
 import { getTranslation } from "@repo/i18n/getTranslation";
 import { useState } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Select, MenuItem } from "@mui/material";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const lang = "pt";
 
@@ -20,6 +22,13 @@ const serviceOrders = [
 ];
 
 export default function ServiceOrdersList() {
+
+  const{ data: session } = useSession({
+      required: true,
+      onUnauthenticated() {
+        redirect("/api/auth/callback/credentials");
+      }
+    });
 
   const [equipmentFilter, setEquipmentFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");

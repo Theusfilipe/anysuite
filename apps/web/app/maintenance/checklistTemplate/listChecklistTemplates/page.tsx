@@ -4,6 +4,8 @@ import { getTranslation } from "@repo/i18n/getTranslation";
 import { useState, useEffect } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, MenuItem, Select, TextField, Button } from "@mui/material";
 import { get } from "http";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const lang = "pt";
 
@@ -49,6 +51,14 @@ const checklistTemplates: ChecklistTemplate[] = [
 ];
 
 export default function ChecklistTemplatesList() {
+
+  const{ data: session } = useSession({
+      required: true,
+      onUnauthenticated() {
+        redirect("/api/auth/callback/credentials");
+      }
+    });
+
   const [checklistTemplates, setChecklistTemplates] = useState<ChecklistTemplate[]>([]);
 
   const [typeFilter, setTypeFilter] = useState("");

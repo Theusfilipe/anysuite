@@ -3,6 +3,8 @@
 import { getTranslation } from "@repo/i18n/getTranslation";
 import { useState } from "react";
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField, Button } from "@mui/material";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const lang = "pt";
 
@@ -39,6 +41,14 @@ const serviceEquipments: ServiceEquipment[] = [
 const serviceOrderTypes = ["Maintenance", "Inspection", "Repair"];
 
 export default function NewServiceOrder() {
+
+  const{ data: session } = useSession({
+      required: true,
+      onUnauthenticated() {
+        redirect("/api/auth/callback/credentials");
+      }
+    });
+
   const [formData, setFormData] = useState({
     serviceRequests: [],
     serviceEquipments: [],

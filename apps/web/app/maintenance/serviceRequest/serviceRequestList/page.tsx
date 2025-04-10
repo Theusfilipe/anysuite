@@ -4,6 +4,8 @@ import { getTranslation } from "@repo/i18n/getTranslation";
 import { useState, useEffect } from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, MenuItem, Select, TextField } from "@mui/material";
 import { get } from "http";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const lang = "pt";
 
@@ -18,6 +20,14 @@ interface ServiceRequest {
 }
 
 export default function ServiceRequestsList() {
+
+  const{ data: session } = useSession({
+      required: true,
+      onUnauthenticated() {
+        redirect("/api/auth/callback/credentials");
+      }
+    });
+
   const [serviceRequests, setServiceRequests] = useState<ServiceRequest[]>([]);
 
   const [equipmentFilter, setEquipmentFilter] = useState("");

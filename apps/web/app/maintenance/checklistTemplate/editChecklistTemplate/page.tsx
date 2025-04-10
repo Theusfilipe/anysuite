@@ -20,6 +20,8 @@ import {
 } from "@mui/material";
 import { Add, Delete, Save as SaveIcon, Edit as EditIcon } from "@mui/icons-material";
 import { Certificate } from "crypto";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const lang = "pt";
 
@@ -34,6 +36,14 @@ const initialChecklist = {
 };
 
 export default function NewChecklistTemplate() {
+
+  const{ data: session } = useSession({
+      required: true,
+      onUnauthenticated() {
+        redirect("/api/auth/callback/credentials");
+      }
+    });
+
   const [formData, setFormData] = useState(initialChecklist);
   const [isEditing, setIsEditing] = useState(false);
 
