@@ -231,8 +231,8 @@ const getIcon = (iconName: string) => {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleDrawer = () => {
+    setOpen(open => !open);
   };
 
   const isMenuOpen = Boolean(anchorEl);
@@ -318,7 +318,7 @@ const getIcon = (iconName: string) => {
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={handleDrawerOpen}
+              onClick={handleDrawer}
               edge="start"
               sx={[
                 {
@@ -394,9 +394,18 @@ const getIcon = (iconName: string) => {
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
+          
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        {open && (<Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
+              {title}
+            </Typography>)}
+          <IconButton onClick={handleDrawer}>
+            {theme.direction === 'rtl' || !open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
