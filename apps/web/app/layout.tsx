@@ -6,6 +6,8 @@ import theme from "./theme";
 import { ThemeProvider } from '@mui/material/styles';
 import AuthProvider from "./context/AuthProvider";
 
+import PrimarySearchAppBar from "@repo/ui/header";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -30,13 +32,14 @@ export default function RootLayout({
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <html lang="en">
-          <body className={`${geistSans.variable} ${geistMono.variable}`}>
-            {children}
-          </body>
-        </html>
-      </AuthProvider>
-      
+          <html lang="en">
+            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+              <PrimarySearchAppBar>
+                {children}
+              </PrimarySearchAppBar>
+            </body>
+          </html>
+      </AuthProvider>    
     </ThemeProvider>
     
   );

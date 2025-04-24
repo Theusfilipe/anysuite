@@ -8,7 +8,8 @@
     "./code": "./src/code.tsx",
     "./sidebar": "./src/sidebar.tsx",
     "./inputSelect": "./src/inputSelect.tsx",
-    "./fullcalendar": "./src/fullcalendar.tsx"
+    "./fullcalendar": "./src/fullcalendar.tsx",
+    "./header": "./src/header.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

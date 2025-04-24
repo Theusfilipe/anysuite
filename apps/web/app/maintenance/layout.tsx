@@ -4,6 +4,7 @@ import { getTranslation } from "@repo/i18n/getTranslation";
 import Sidebar from "@repo/ui/sidebar";
 
 import Link from "next/link";
+import PrimarySearchAppBar from "@repo/ui/header";
 
 const lang = "pt";
 
@@ -21,13 +22,16 @@ const menuItems = [
 ];
 export default function MaintenanceLayout({ children }: { children: ReactNode }) {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <PrimarySearchAppBar>
+      <div style={{ display: "flex", height: "100vh" }}>
       
 
-      <Sidebar title={getTranslation(lang, "maintenanceWelcome")} menuItems={menuItems}>
-        {children} {/* Aqui o conteúdo das páginas filhas será exibido */}
-      </Sidebar>
-    </div>
+        <Sidebar title={getTranslation(lang, "maintenanceWelcome")} menuItems={menuItems}>
+          {children} {/* Aqui o conteúdo das páginas filhas será exibido */}
+        </Sidebar>
+      </div>
+    </PrimarySearchAppBar>
+    
   );
 }
 
