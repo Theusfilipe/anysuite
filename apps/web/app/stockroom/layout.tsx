@@ -1,7 +1,9 @@
+'use client';
 import { ReactNode } from "react";
 import { getTranslation } from "@repo/i18n/getTranslation";
 
-import Sidebar from "@repo/ui/sidebar";
+import { useLayout } from "@repo/appcontext/layoutContext";
+import { useEffect } from "react";
 
 const lang = "pt";
 
@@ -13,11 +15,23 @@ const menuItems = [
 ];
 
 export default function StockroomLayout({ children }: { children: ReactNode }) {
+  const { setTitle, setMenuItems } = useLayout();
+    
+      useEffect(() => {
+        setTitle(String(getTranslation(lang, "stockroom")));
+        setMenuItems([
+          { href: "/stockroom/stockroomEquipmentList", text: String(getTranslation(lang, "stockroomEquipmentList")), icon: "Inventory" },
+          { href: "/stockroom/stockroomNewEquipment", text: String(getTranslation(lang, "stockroomNewEquipment")), icon: "AddCircle" },
+          { href: "/stockroom/stockroomNewSparePart", text: String(getTranslation(lang, "stockroomNewSparePart")), icon: "AddCircleOutline" },
+          { href: "/", text: String(getTranslation(lang, "return")), icon: "ArrowBack" },
+        ]
+        );
+      }, []);
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <Sidebar title={getTranslation(lang, "stockroom")} menuItems={menuItems}>
+    <div>
+      
         {children} 
-      </Sidebar>
+      
     </div>
   );
 }

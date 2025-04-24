@@ -6,6 +6,7 @@ import theme from "./theme";
 import { ThemeProvider } from '@mui/material/styles';
 import AuthProvider from "./context/AuthProvider";
 
+import { LayoutProvider } from '@repo/appcontext/layoutContext';
 import PrimarySearchAppBar from "@repo/ui/header";
 
 const geistSans = localFont({
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
+        <LayoutProvider>  
           <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
               <PrimarySearchAppBar>
@@ -39,6 +41,7 @@ export default function RootLayout({
               </PrimarySearchAppBar>
             </body>
           </html>
+        </LayoutProvider>
       </AuthProvider>    
     </ThemeProvider>
     

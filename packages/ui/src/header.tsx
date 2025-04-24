@@ -5,6 +5,8 @@ import { styled, alpha } from '@mui/material/styles';
 
 import  Link  from 'next/link';
 
+import { useLayout } from '@repo/appcontext/layoutContext';
+
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -88,6 +90,18 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
+}));
+
+const Main = styled('main', {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<{ open: boolean }>(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  marginLeft: open ? drawerWidth : `calc(${theme.spacing(7)} + 1px)`,
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.standard,
+  }),
 }));
 
 const Search = styled('div')(({ theme }) => ({
@@ -204,8 +218,8 @@ const getIcon = (iconName: string) => {
 
 
 
-export default function PrimarySearchAppBar({ children, title, menuItems = [], }: 
-  Readonly<{ children: React.ReactNode; title?: string; menuItems?: { href: string, text: string, icon: string }[]}>) {
+  export default function PrimarySearchAppBar({ children }: { children: React.ReactNode }) {
+    const { title, menuItems } = useLayout();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -314,9 +328,7 @@ export default function PrimarySearchAppBar({ children, title, menuItems = [], }
               ]}
             >
               <MenuIcon />
-              <Typography variant="h6" noWrap component="div">
-                {title}
-              </Typography>
+              
             </IconButton>
             <Typography
               variant="h6"
@@ -423,7 +435,7 @@ export default function PrimarySearchAppBar({ children, title, menuItems = [], }
                         },
                   ]}
                 >
-                  {getIcon(icon)}
+                  {getIcon(icon ?? "Unknown")}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}
@@ -445,10 +457,10 @@ export default function PrimarySearchAppBar({ children, title, menuItems = [], }
         
         
       </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <DrawerHeader />
-            {children}
-        </Box>
+      <Main open={open}>
+      <DrawerHeader />
+          {children}
+      </Main>
       </Box>
       
     </>
