@@ -23,6 +23,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
+import AccountMenu from './AccountMenu';
+
 import { useTheme, Theme, CSSObject } from '@mui/material/styles';
 
 import MuiDrawer from '@mui/material/Drawer';
@@ -227,9 +229,6 @@ const getIcon = (iconName: string) => {
 
   const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
   const handleDrawer = () => {
     setOpen(open => !open);
@@ -295,18 +294,11 @@ const getIcon = (iconName: string) => {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+      <MenuItem>
+        <AccountMenu/>
+        <p>Account</p>
       </MenuItem>
+      
     </Menu>
   );
 
@@ -367,17 +359,9 @@ const getIcon = (iconName: string) => {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              
+              <AccountMenu />
+              
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton

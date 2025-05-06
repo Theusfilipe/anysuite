@@ -1,5 +1,5 @@
 import {withAuth,NextRequestWithAuth} from "next-auth/middleware";
-
+import { NextResponse } from "next/server";
 
 
 export default withAuth(
@@ -8,15 +8,17 @@ export default withAuth(
         // console.log(request.nextUrl.pathname, request.nextauth.token?.user.role)
         console.log(req.nextUrl.pathname)
         console.log(req.nextauth.token)
+
+        if(req.nextUrl.pathname.startsWith("/maintenance") && req.nextauth.token?.role !== "admin") {
+            return NextResponse.rewrite(
+                new URL("/denied", req.url)
+
+            )
+        }
     },
     {callbacks: {
-        authorized: ({ token }) => {
-            if (token?.role === "admin") return true;
-                return false;
-            },
-        
-    }}
-    
+        authorized: ({ token }) => !!token}
+    }
 )
     
 
