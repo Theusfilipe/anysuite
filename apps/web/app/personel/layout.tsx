@@ -24,6 +24,11 @@ export default function PersonelLayout({ children }: { children: ReactNode }) {
       { href: "/personel/addNewEmployee", text: String(getTranslation(lang, "addNewEmployee")), icon: "PersonAdd" },
       { href: "/", text: String(getTranslation(lang, "return")), icon:"ArrowBack" },
     ]);
+
+    return () => {
+      setTitle("");          // Clear title
+      setMenuItems([]);      // Clear menu items
+    };
   }, []);
 
   return (

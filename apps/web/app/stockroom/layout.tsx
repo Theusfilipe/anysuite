@@ -26,6 +26,11 @@ export default function StockroomLayout({ children }: { children: ReactNode }) {
           { href: "/", text: String(getTranslation(lang, "return")), icon: "ArrowBack" },
         ]
         );
+        
+        return () => {
+          setTitle("");          // Clear title
+          setMenuItems([]);      // Clear menu items
+        };
       }, []);
   return (
     <div>

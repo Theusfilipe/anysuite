@@ -37,6 +37,10 @@ export default function MaintenanceLayout({ children }: { children: ReactNode })
         { href: "/", text: String(getTranslation(lang, "return")),icon:"ArrowBack" },
       ]
       );
+      return () => {
+        setTitle("");          // Clear title
+        setMenuItems([]);      // Clear menu items
+      };
     }, []);
 
   return (
