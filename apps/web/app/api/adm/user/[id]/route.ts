@@ -1,17 +1,16 @@
 import { prisma } from '@repo/db'
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 import bcrypt from 'bcrypt'
 
 const departments = ['Stockroom', 'Maintenance', 'Personnel'] as const
 const levels = ['NONE', 'READ_ONLY', 'READ_WRITE', 'SUPERVISOR', 'MANAGER', 'ADMIN'] as const
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
   try {
+    const { id } = await context.params
+
     const user = await prisma.user.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { access: true }
     })
 
@@ -22,20 +21,26 @@ export async function GET(
     return NextResponse.json(user, { status: 200 })
   } catch (error) {
     console.error('Erro ao buscar usuário:', error)
-    return NextResponse.json({ message: 'Erro interno' }, { status: 500 })
+    return NextResponse.json({ message: 'Erro interno do servidor' }, { status: 500 })
   }
 }
 
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest) {
   try {
-    const userId = params.id
+    const url = new URL(req.url)
+    const id = url.pathname.split('/').pop() // Extrai o ID da URL
+
+    if (!id) {
+      return NextResponse.json({ message: 'ID não fornecido na URL' }, { status: 400 })
+    }
+
     const body = await req.json()
     const { name, password, access } = body
 
     if (!name || typeof access !== 'object') {
       return NextResponse.json({ message: 'Dados inválidos' }, { status: 400 })
-    }  
+    }
 
     for (const dep of departments) {
       const level = access[dep]
@@ -44,19 +49,18 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       }
     }
 
-    const existingUser = await prisma.user.findUnique({ where: { id: userId } })
+    const existingUser = await prisma.user.findUnique({ where: { id } })
     if (!existingUser) {
       return NextResponse.json({ message: 'Usuário não encontrado' }, { status: 404 })
     }
 
     const updates = []
 
-    // Prepara update de usuário (sem await!)
     const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined
 
     updates.push(
       prisma.user.update({
-        where: { id: userId },
+        where: { id },
         data: {
           name,
           ...(hashedPassword && { password: hashedPassword })
@@ -64,13 +68,12 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       })
     )
 
-    // Prepara updates de acesso (também como promessas Prisma)
     for (const dep of departments) {
       updates.push(
         prisma.access.upsert({
           where: {
             userId_department: {
-              userId,
+              userId: id,
               department: dep
             }
           },
@@ -78,7 +81,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
             level: access[dep]
           },
           create: {
-            userId,
+            userId: id,
             department: dep,
             level: access[dep]
           }
@@ -86,7 +89,6 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       )
     }
 
-    // Executa tudo em uma transação atômica
     await prisma.$transaction(updates)
 
     return NextResponse.json({ message: 'Usuário atualizado com sucesso' }, { status: 200 })

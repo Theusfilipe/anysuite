@@ -12,13 +12,14 @@ import {
   Button
 } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 const departments = ['Stockroom', 'Maintenance', 'Personnel']
 const levels = ['NONE', 'READ_ONLY', 'READ_WRITE', 'SUPERVISOR', 'MANAGER', 'ADMIN']
 
 export default function EditUserPage() {
   const { id } = useParams()
+  const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<any>(null)
   const [formData, setFormData] = useState({
@@ -69,26 +70,27 @@ export default function EditUserPage() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setLoading(true)
+    e.preventDefault()
+    setLoading(true)
 
-  try {
-    const res = await fetch(`/api/adm/user/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    })
+    try {
+      const res = await fetch(`/api/adm/user/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
 
-    const data = await res.json()
-    if (!res.ok) throw new Error(data.message || 'Erro ao atualizar usuário')
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.message || 'Erro ao atualizar usuário')
 
-    alert('Usuário atualizado com sucesso')
-  } catch (err: any) {
-    alert(err.message)
-  } finally {
-    setLoading(false)
+      //alert('Usuário atualizado com sucesso')
+      router.push('/adm/user/list') // Redireciona para a listagem  
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setLoading(false)
+    }
   }
-}
 
   if (!user) {
     return (
