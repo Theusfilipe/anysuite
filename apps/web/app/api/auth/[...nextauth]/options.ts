@@ -14,7 +14,7 @@ export const options : NextAuthOptions = {
             
         },
         async authorize(credentials) {
-            const user = {id:"42", name:"Dave", password:"next", role:"manager"};
+            const user = {id:"42", name:"Dave", password:"next", role:"adm"};
             // You could fetch from an external API here
             const { username, password } = credentials as { username: string; password: string };
             if(credentials?.username === user.name && credentials?.password === user.password) {

@@ -61,6 +61,7 @@ import Inventory2 from '@mui/icons-material/Inventory2';
 
 import Group from '@mui/icons-material/Group';
 import PersonAdd from '@mui/icons-material/PersonAdd';
+import PeopleIcon from '@mui/icons-material/People';
 
 const drawerWidth = 240;
 
@@ -214,6 +215,7 @@ const getIcon = (iconName: string) => {
     if (iconName === "Checklist") return <Checklist />
     if (iconName === "ChecklistAdd") return <PlaylistAddCircleIcon />
     if (iconName === "Today") return <Today />;
+    if (iconName === "People") return <PeopleIcon />;
     return <UnknownIcon />; // Ícone padrão caso não encontre
   };
 
@@ -276,7 +278,7 @@ const getIcon = (iconName: string) => {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={0} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -288,7 +290,7 @@ const getIcon = (iconName: string) => {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={0} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>

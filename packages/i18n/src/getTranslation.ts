@@ -1,3 +1,4 @@
+import { access, read } from "fs";
 
 
 const translations: { [key in Language]: { [key: string]: string } } = {
@@ -77,7 +78,10 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       addActivity: "Adicionar atividade",
       parameter: "Parameter",
       value: "Value",
-      
+
+      // Below are the form data for "Account Creation",
+      createNewUser: "Create New User",
+      createdUserSuccessfully: "User created successfully",
 
       newSparePart: "New Spare Part",
       sparePartName: "Spare Part Name",
@@ -216,6 +220,26 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       certificate: "Certificado",
       equipmentId: "ID do equipamento",
       checklistDate: "Data do checklist",
+      // Abaixo dados do formulário de "Admin",
+      adminPanel: "Painel de administração",
+
+      // Abaixo dados do formulário de "Criação de contas",
+      createNewUser: "Criar nova conta",
+      fullName: "Nome de usuário",
+      createAccount: "Criar conta",
+      createdUserSuccessfully: "Usuário criado com sucesso",
+      accessLevel: "Nível de acesso",
+      department: "Departamento",
+      level: "Nível",
+      noAccess: "Sem acesso",
+      readOnly: "Somente leitura",
+      readWrite: "Leitura e escrita",
+      supervisor: "Supervisor",
+      manager: "Gerente",
+      admin: "Administrador",
+      account: "Conta",
+      
+      
 
       startDate: "Data de início",
       endDate: "Data de término",
@@ -256,7 +280,16 @@ const translations: { [key in Language]: { [key: string]: string } } = {
   export type Language = "en" | "pt";
 
   
-  export const getTranslation = (lang: Language, key: keyof typeof translations.en) => {
-    return translations[lang][key] ?? key;
-  };
+  /**
+   * Retrieves the translation for a given language and key.
+   * If the translation is not found, it falls back to returning the key itself.
+   *
+   * @param lang - The language for which the translation is requested.
+   * @param key - The key corresponding to the desired translation.
+   * @returns The translated string or the key if no translation is found.
+   */
+  export function getTranslation(lang: string, key: string): string {
+    const translation = translations[lang as Language]?.[key];
+    return typeof translation === 'string' ? translation : key;
+  }
 
