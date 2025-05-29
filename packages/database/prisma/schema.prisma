@@ -3,7 +3,6 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -12,26 +11,6 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  access    Access[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Access {
-  id          String     @id @default(cuid())
-  user        User       @relation(fields: [userId], references: [id])
-  userId      String
-  department  Department
-  level       AccessLevel
-  createdAt   DateTime   @default(now())
-
-  @@unique([userId, department]) // Impede duplicidade por usuário e departamento
 }
 
 enum Department {
@@ -49,97 +28,134 @@ enum AccessLevel {
   ADMIN
 }
 
-model Equipment {
-  id                           String     @id @default(cuid())
-  name                         String
-  lastRepairDate               DateTime?
-  nextRepairDate               DateTime?
-  daysBetweenRepairs           Int?
-  createdAt                    DateTime   @default(now())
-  createdBy                    String
-  creator                      User       @relation(fields: [createdBy], references: [id])
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  serviceOrders                ServiceOrder[]
-  repairServices               RepairService[]
-  checklists                   Checklist[]
-  inspectionSchedules          InspectionSchedule[]
+  access            Access[]
+  createdEquipment  Equipment[]          @relation("CreatedEquipments")
+  createdChecklists Checklist[]          @relation("CreatedChecklists")
+  createdTasks      ChecklistTask[]      @relation("CreatedTasks")
+  createdResults    ChecklistResult[]    @relation("CreatedResults")
+  createdRequests   ServiceRequest[]     @relation("CreatedRequests")
+  createdOrders     ServiceOrder[]       @relation("CreatedOrders")
+  createdRepairs    RepairService[]      @relation("CreatedRepairs")
+  createdSchedules  InspectionSchedule[] @relation("CreatedSchedules")
+  repairs           RepairService[]      @relation("RepairEmployee")
+  requests          ServiceRequest[]     @relation("Requester")
+  SparePart         SparePart[]
+}
+
+model Access {
+  id         String      @id @default(cuid())
+  userId     String
+  user       User        @relation(fields: [userId], references: [id])
+  department Department
+  level      AccessLevel
+  createdAt  DateTime    @default(now())
+
+  @@unique([userId, department])
+}
+
+model Equipment {
+  id                 String    @id @default(cuid())
+  name               String
+  lastRepairDate     DateTime?
+  nextRepairDate     DateTime?
+  daysBetweenRepairs Int?
+  createdBy          String
+  creator            User      @relation("CreatedEquipments", fields: [createdBy], references: [id])
+  createdAt          DateTime  @default(now())
+
+  serviceOrders       ServiceOrder[]
+  repairServices      RepairService[]      @relation("UsedEquipments")
+  checklists          Checklist[]
+  inspectionSchedules InspectionSchedule[]
 }
 
 model SparePart {
-  id           String    @id @default(cuid())
-  name         String
-  weight       Float
-  material     String
-  unitCost     Float
-  quantity     Int
-  createdAt    DateTime  @default(now())
-  createdBy    String
-  creator      User      @relation(fields: [createdBy], references: [id])
+  id        String   @id @default(cuid())
+  name      String
+  weight    Float
+  material  String
+  unitCost  Float
+  quantity  Int
+  createdBy String
+  creator   User     @relation(fields: [createdBy], references: [id])
+  createdAt DateTime @default(now())
 
-  usedIn       RepairService[] @relation("PartsUsed")
+  usedIn RepairService[] @relation("PartsUsed")
 }
 
 model ServiceRequest {
-  id                  String    @id @default(cuid())
-  requesterId         String
-  requester           User      @relation(fields: [requesterId], references: [id])
-  orderDate           DateTime
-  requestDate         DateTime
-  cost                Float
-  createdAt           DateTime  @default(now())
-  createdBy           String
-  creator             User      @relation("CreatedRequests", fields: [createdBy], references: [id])
+  id          String   @id @default(cuid())
+  requesterId String
+  requester   User     @relation("Requester", fields: [requesterId], references: [id])
+  orderDate   DateTime
+  requestDate DateTime
+  cost        Float
+  createdBy   String
+  creator     User     @relation("CreatedRequests", fields: [createdBy], references: [id])
+  createdAt   DateTime @default(now())
 
-  serviceOrder        ServiceOrder?
+  serviceOrder ServiceOrder?
 }
 
 model ServiceOrder {
-  id                String    @id @default(cuid())
-  requestId         String
-  request           ServiceRequest @relation(fields: [requestId], references: [id])
-  equipmentId       String
-  equipment         Equipment @relation(fields: [equipmentId], references: [id])
-  orderDate         DateTime
-  startDate         DateTime?
-  endDate           DateTime?
-  totalCost         Float
-  type              Boolean
-  notes             String?
-  isOpen            Boolean
-  isOperational     Boolean
-  createdAt         DateTime  @default(now())
-  createdBy         String
-  creator           User      @relation("CreatedOrders", fields: [createdBy], references: [id])
+  id            String         @id @default(cuid())
+  requestId     String         @unique
+  request       ServiceRequest @relation(fields: [requestId], references: [id])
+  equipmentId   String
+  equipment     Equipment      @relation(fields: [equipmentId], references: [id])
+  orderDate     DateTime
+  startDate     DateTime?
+  endDate       DateTime?
+  totalCost     Float
+  type          Boolean
+  notes         String?
+  isOpen        Boolean
+  isOperational Boolean
+  createdBy     String
+  creator       User           @relation("CreatedOrders", fields: [createdBy], references: [id])
+  createdAt     DateTime       @default(now())
 
-  repairServices    RepairService[]
+  repairServices      RepairService[]
+  inspectionSchedules InspectionSchedule[] @relation("LastOrder")
 }
 
 model RepairService {
-  id                      String    @id @default(cuid())
-  employeeId              String
-  employee                User      @relation(fields: [employeeId], references: [id])
-  orderId                 String
-  order                   ServiceOrder @relation(fields: [orderId], references: [id])
-  usedEquipmentId         String
-  usedEquipment           Equipment @relation(fields: [usedEquipmentId], references: [id])
-  partsUsed               SparePart[] @relation("PartsUsed")
-  startDate               DateTime?
-  endDate                 DateTime?
-  cost                    Float
-  orderDate               DateTime
-  createdAt               DateTime  @default(now())
-  createdBy               String
-  creator                 User      @relation("CreatedRepairs", fields: [createdBy], references: [id])
+  id              String       @id @default(cuid())
+  employeeId      String
+  employee        User         @relation("RepairEmployee", fields: [employeeId], references: [id])
+  orderId         String
+  order           ServiceOrder @relation(fields: [orderId], references: [id])
+  usedEquipmentId String
+  usedEquipment   Equipment    @relation("UsedEquipments", fields: [usedEquipmentId], references: [id])
+  partsUsed       SparePart[]  @relation("PartsUsed")
+  startDate       DateTime?
+  endDate         DateTime?
+  cost            Float
+  orderDate       DateTime
+  createdBy       String
+  creator         User         @relation("CreatedRepairs", fields: [createdBy], references: [id])
+  createdAt       DateTime     @default(now())
+
+  checklistResults ChecklistResult[]
 }
 
 model Checklist {
-  id           String     @id @default(cuid())
-  equipmentId  String
-  equipment    Equipment  @relation(fields: [equipmentId], references: [id])
-  createdAt    DateTime   @default(now())
-  createdBy    String
-  creator      User       @relation(fields: [createdBy], references: [id])
+  id          String    @id @default(cuid())
+  equipmentId String
+  equipment   Equipment @relation(fields: [equipmentId], references: [id])
+  createdBy   String
+  creator     User      @relation("CreatedChecklists", fields: [createdBy], references: [id])
+  createdAt   DateTime  @default(now())
 
+  tasks               ChecklistTask[]
   inspectionSchedules InspectionSchedule[]
 }
 
@@ -149,45 +165,39 @@ model ChecklistTask {
   checklist   Checklist @relation(fields: [checklistId], references: [id])
   order       Int
   name        String    @db.VarChar(255)
-
-  results     ChecklistResult[]
-
-  createdAt   DateTime  @default(now())
   createdBy   String
-  creator     User      @relation(fields: [createdBy], references: [id])
+  creator     User      @relation("CreatedTasks", fields: [createdBy], references: [id])
+  createdAt   DateTime  @default(now())
+
+  results ChecklistResult[]
 }
 
 model ChecklistResult {
-  id           String          @id @default(cuid())
-  taskId       String
-  task         ChecklistTask   @relation(fields: [taskId], references: [id])
-  instance     Int
-  repairId     String
-  repair       RepairService   @relation(fields: [repairId], references: [id])
-  checked      Boolean
-
-  createdAt    DateTime        @default(now())
-  createdBy    String
-  creator      User            @relation(fields: [createdBy], references: [id])
+  id        String        @id @default(cuid())
+  taskId    String
+  task      ChecklistTask @relation(fields: [taskId], references: [id])
+  instance  Int
+  repairId  String
+  repair    RepairService @relation(fields: [repairId], references: [id])
+  checked   Boolean
+  createdBy String
+  creator   User          @relation("CreatedResults", fields: [createdBy], references: [id])
+  createdAt DateTime      @default(now())
 }
 
 model InspectionSchedule {
-  id             String      @id @default(cuid())
-  equipmentId    String
-  equipment      Equipment   @relation(fields: [equipmentId], references: [id])
-
-  checklistId    String
-  checklist      Checklist   @relation(fields: [checklistId], references: [id])
-
-  lastOrderId    String?
-  lastOrder      ServiceOrder? @relation(fields: [lastOrderId], references: [id])
-
-  orderDate      DateTime
-  validityDays   Int
-  nextDate       DateTime?
-  seen           Boolean
-
-  createdAt      DateTime    @default(now())
-  createdBy      String
-  creator        User        @relation(fields: [createdBy], references: [id])
+  id           String        @id @default(cuid())
+  equipmentId  String
+  equipment    Equipment     @relation(fields: [equipmentId], references: [id])
+  checklistId  String
+  checklist    Checklist     @relation(fields: [checklistId], references: [id])
+  lastOrderId  String?
+  lastOrder    ServiceOrder? @relation("LastOrder", fields: [lastOrderId], references: [id])
+  orderDate    DateTime
+  validityDays Int
+  nextDate     DateTime?
+  seen         Boolean
+  createdBy    String
+  creator      User          @relation("CreatedSchedules", fields: [createdBy], references: [id])
+  createdAt    DateTime      @default(now())
 }

@@ -137,6 +137,105 @@ exports.Prisma.AccessScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.EquipmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  lastRepairDate: 'lastRepairDate',
+  nextRepairDate: 'nextRepairDate',
+  daysBetweenRepairs: 'daysBetweenRepairs',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SparePartScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  weight: 'weight',
+  material: 'material',
+  unitCost: 'unitCost',
+  quantity: 'quantity',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ServiceRequestScalarFieldEnum = {
+  id: 'id',
+  requesterId: 'requesterId',
+  orderDate: 'orderDate',
+  requestDate: 'requestDate',
+  cost: 'cost',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ServiceOrderScalarFieldEnum = {
+  id: 'id',
+  requestId: 'requestId',
+  equipmentId: 'equipmentId',
+  orderDate: 'orderDate',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  totalCost: 'totalCost',
+  type: 'type',
+  notes: 'notes',
+  isOpen: 'isOpen',
+  isOperational: 'isOperational',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepairServiceScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  orderId: 'orderId',
+  usedEquipmentId: 'usedEquipmentId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  cost: 'cost',
+  orderDate: 'orderDate',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ChecklistScalarFieldEnum = {
+  id: 'id',
+  equipmentId: 'equipmentId',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ChecklistTaskScalarFieldEnum = {
+  id: 'id',
+  checklistId: 'checklistId',
+  order: 'order',
+  name: 'name',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ChecklistResultScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  instance: 'instance',
+  repairId: 'repairId',
+  checked: 'checked',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InspectionScheduleScalarFieldEnum = {
+  id: 'id',
+  equipmentId: 'equipmentId',
+  checklistId: 'checklistId',
+  lastOrderId: 'lastOrderId',
+  orderDate: 'orderDate',
+  validityDays: 'validityDays',
+  nextDate: 'nextDate',
+  seen: 'seen',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -145,6 +244,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 exports.Department = exports.$Enums.Department = {
   Stockroom: 'Stockroom',
@@ -163,7 +267,16 @@ exports.AccessLevel = exports.$Enums.AccessLevel = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Access: 'Access'
+  Access: 'Access',
+  Equipment: 'Equipment',
+  SparePart: 'SparePart',
+  ServiceRequest: 'ServiceRequest',
+  ServiceOrder: 'ServiceOrder',
+  RepairService: 'RepairService',
+  Checklist: 'Checklist',
+  ChecklistTask: 'ChecklistTask',
+  ChecklistResult: 'ChecklistResult',
+  InspectionSchedule: 'InspectionSchedule'
 };
 
 /**
