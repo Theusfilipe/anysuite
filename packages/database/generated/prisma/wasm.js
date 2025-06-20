@@ -147,6 +147,13 @@ exports.Prisma.EquipmentScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.EquipmentDataScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  value: 'value',
+  equipmentId: 'equipmentId'
+};
+
 exports.Prisma.SparePartScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -269,6 +276,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Access: 'Access',
   Equipment: 'Equipment',
+  EquipmentData: 'EquipmentData',
   SparePart: 'SparePart',
   ServiceRequest: 'ServiceRequest',
   ServiceOrder: 'ServiceOrder',

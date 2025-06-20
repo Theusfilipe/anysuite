@@ -29,6 +29,11 @@ export type Access = $Result.DefaultSelection<Prisma.$AccessPayload>
  */
 export type Equipment = $Result.DefaultSelection<Prisma.$EquipmentPayload>
 /**
+ * Model EquipmentData
+ * 
+ */
+export type EquipmentData = $Result.DefaultSelection<Prisma.$EquipmentDataPayload>
+/**
  * Model SparePart
  * 
  */
@@ -257,6 +262,16 @@ export class PrismaClient<
     * ```
     */
   get equipment(): Prisma.EquipmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.equipmentData`: Exposes CRUD operations for the **EquipmentData** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EquipmentData
+    * const equipmentData = await prisma.equipmentData.findMany()
+    * ```
+    */
+  get equipmentData(): Prisma.EquipmentDataDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.sparePart`: Exposes CRUD operations for the **SparePart** model.
@@ -780,6 +795,7 @@ export namespace Prisma {
     User: 'User',
     Access: 'Access',
     Equipment: 'Equipment',
+    EquipmentData: 'EquipmentData',
     SparePart: 'SparePart',
     ServiceRequest: 'ServiceRequest',
     ServiceOrder: 'ServiceOrder',
@@ -806,7 +822,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "access" | "equipment" | "sparePart" | "serviceRequest" | "serviceOrder" | "repairService" | "checklist" | "checklistTask" | "checklistResult" | "inspectionSchedule"
+      modelProps: "user" | "access" | "equipment" | "equipmentData" | "sparePart" | "serviceRequest" | "serviceOrder" | "repairService" | "checklist" | "checklistTask" | "checklistResult" | "inspectionSchedule"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1029,6 +1045,80 @@ export namespace Prisma {
           count: {
             args: Prisma.EquipmentCountArgs<ExtArgs>
             result: $Utils.Optional<EquipmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      EquipmentData: {
+        payload: Prisma.$EquipmentDataPayload<ExtArgs>
+        fields: Prisma.EquipmentDataFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EquipmentDataFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EquipmentDataFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>
+          }
+          findFirst: {
+            args: Prisma.EquipmentDataFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EquipmentDataFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>
+          }
+          findMany: {
+            args: Prisma.EquipmentDataFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>[]
+          }
+          create: {
+            args: Prisma.EquipmentDataCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>
+          }
+          createMany: {
+            args: Prisma.EquipmentDataCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EquipmentDataCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>[]
+          }
+          delete: {
+            args: Prisma.EquipmentDataDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>
+          }
+          update: {
+            args: Prisma.EquipmentDataUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>
+          }
+          deleteMany: {
+            args: Prisma.EquipmentDataDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EquipmentDataUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EquipmentDataUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>[]
+          }
+          upsert: {
+            args: Prisma.EquipmentDataUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EquipmentDataPayload>
+          }
+          aggregate: {
+            args: Prisma.EquipmentDataAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEquipmentData>
+          }
+          groupBy: {
+            args: Prisma.EquipmentDataGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EquipmentDataGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EquipmentDataCountArgs<ExtArgs>
+            result: $Utils.Optional<EquipmentDataCountAggregateOutputType> | number
           }
         }
       }
@@ -1711,6 +1801,7 @@ export namespace Prisma {
     user?: UserOmit
     access?: AccessOmit
     equipment?: EquipmentOmit
+    equipmentData?: EquipmentDataOmit
     sparePart?: SparePartOmit
     serviceRequest?: ServiceRequestOmit
     serviceOrder?: ServiceOrderOmit
@@ -1947,6 +2038,7 @@ export namespace Prisma {
     repairServices: number
     checklists: number
     inspectionSchedules: number
+    EquipmentData: number
   }
 
   export type EquipmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1954,6 +2046,7 @@ export namespace Prisma {
     repairServices?: boolean | EquipmentCountOutputTypeCountRepairServicesArgs
     checklists?: boolean | EquipmentCountOutputTypeCountChecklistsArgs
     inspectionSchedules?: boolean | EquipmentCountOutputTypeCountInspectionSchedulesArgs
+    EquipmentData?: boolean | EquipmentCountOutputTypeCountEquipmentDataArgs
   }
 
   // Custom InputTypes
@@ -1993,6 +2086,13 @@ export namespace Prisma {
    */
   export type EquipmentCountOutputTypeCountInspectionSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InspectionScheduleWhereInput
+  }
+
+  /**
+   * EquipmentCountOutputType without action
+   */
+  export type EquipmentCountOutputTypeCountEquipmentDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquipmentDataWhereInput
   }
 
 
@@ -4850,6 +4950,7 @@ export namespace Prisma {
     repairServices?: boolean | Equipment$repairServicesArgs<ExtArgs>
     checklists?: boolean | Equipment$checklistsArgs<ExtArgs>
     inspectionSchedules?: boolean | Equipment$inspectionSchedulesArgs<ExtArgs>
+    EquipmentData?: boolean | Equipment$EquipmentDataArgs<ExtArgs>
     _count?: boolean | EquipmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["equipment"]>
 
@@ -4892,6 +4993,7 @@ export namespace Prisma {
     repairServices?: boolean | Equipment$repairServicesArgs<ExtArgs>
     checklists?: boolean | Equipment$checklistsArgs<ExtArgs>
     inspectionSchedules?: boolean | Equipment$inspectionSchedulesArgs<ExtArgs>
+    EquipmentData?: boolean | Equipment$EquipmentDataArgs<ExtArgs>
     _count?: boolean | EquipmentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EquipmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4909,6 +5011,7 @@ export namespace Prisma {
       repairServices: Prisma.$RepairServicePayload<ExtArgs>[]
       checklists: Prisma.$ChecklistPayload<ExtArgs>[]
       inspectionSchedules: Prisma.$InspectionSchedulePayload<ExtArgs>[]
+      EquipmentData: Prisma.$EquipmentDataPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5317,6 +5420,7 @@ export namespace Prisma {
     repairServices<T extends Equipment$repairServicesArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$repairServicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     checklists<T extends Equipment$checklistsArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$checklistsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChecklistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     inspectionSchedules<T extends Equipment$inspectionSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$inspectionSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InspectionSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    EquipmentData<T extends Equipment$EquipmentDataArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$EquipmentDataArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5845,6 +5949,30 @@ export namespace Prisma {
   }
 
   /**
+   * Equipment.EquipmentData
+   */
+  export type Equipment$EquipmentDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    where?: EquipmentDataWhereInput
+    orderBy?: EquipmentDataOrderByWithRelationInput | EquipmentDataOrderByWithRelationInput[]
+    cursor?: EquipmentDataWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EquipmentDataScalarFieldEnum | EquipmentDataScalarFieldEnum[]
+  }
+
+  /**
    * Equipment without action
    */
   export type EquipmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5860,6 +5988,1051 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EquipmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EquipmentData
+   */
+
+  export type AggregateEquipmentData = {
+    _count: EquipmentDataCountAggregateOutputType | null
+    _min: EquipmentDataMinAggregateOutputType | null
+    _max: EquipmentDataMaxAggregateOutputType | null
+  }
+
+  export type EquipmentDataMinAggregateOutputType = {
+    id: string | null
+    key: string | null
+    value: string | null
+    equipmentId: string | null
+  }
+
+  export type EquipmentDataMaxAggregateOutputType = {
+    id: string | null
+    key: string | null
+    value: string | null
+    equipmentId: string | null
+  }
+
+  export type EquipmentDataCountAggregateOutputType = {
+    id: number
+    key: number
+    value: number
+    equipmentId: number
+    _all: number
+  }
+
+
+  export type EquipmentDataMinAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    equipmentId?: true
+  }
+
+  export type EquipmentDataMaxAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    equipmentId?: true
+  }
+
+  export type EquipmentDataCountAggregateInputType = {
+    id?: true
+    key?: true
+    value?: true
+    equipmentId?: true
+    _all?: true
+  }
+
+  export type EquipmentDataAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EquipmentData to aggregate.
+     */
+    where?: EquipmentDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquipmentData to fetch.
+     */
+    orderBy?: EquipmentDataOrderByWithRelationInput | EquipmentDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EquipmentDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquipmentData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquipmentData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EquipmentData
+    **/
+    _count?: true | EquipmentDataCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EquipmentDataMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EquipmentDataMaxAggregateInputType
+  }
+
+  export type GetEquipmentDataAggregateType<T extends EquipmentDataAggregateArgs> = {
+        [P in keyof T & keyof AggregateEquipmentData]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEquipmentData[P]>
+      : GetScalarType<T[P], AggregateEquipmentData[P]>
+  }
+
+
+
+
+  export type EquipmentDataGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquipmentDataWhereInput
+    orderBy?: EquipmentDataOrderByWithAggregationInput | EquipmentDataOrderByWithAggregationInput[]
+    by: EquipmentDataScalarFieldEnum[] | EquipmentDataScalarFieldEnum
+    having?: EquipmentDataScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EquipmentDataCountAggregateInputType | true
+    _min?: EquipmentDataMinAggregateInputType
+    _max?: EquipmentDataMaxAggregateInputType
+  }
+
+  export type EquipmentDataGroupByOutputType = {
+    id: string
+    key: string
+    value: string
+    equipmentId: string
+    _count: EquipmentDataCountAggregateOutputType | null
+    _min: EquipmentDataMinAggregateOutputType | null
+    _max: EquipmentDataMaxAggregateOutputType | null
+  }
+
+  type GetEquipmentDataGroupByPayload<T extends EquipmentDataGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EquipmentDataGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EquipmentDataGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EquipmentDataGroupByOutputType[P]>
+            : GetScalarType<T[P], EquipmentDataGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EquipmentDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    equipmentId?: boolean
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["equipmentData"]>
+
+  export type EquipmentDataSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    equipmentId?: boolean
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["equipmentData"]>
+
+  export type EquipmentDataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    equipmentId?: boolean
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["equipmentData"]>
+
+  export type EquipmentDataSelectScalar = {
+    id?: boolean
+    key?: boolean
+    value?: boolean
+    equipmentId?: boolean
+  }
+
+  export type EquipmentDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "value" | "equipmentId", ExtArgs["result"]["equipmentData"]>
+  export type EquipmentDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+  }
+  export type EquipmentDataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+  }
+  export type EquipmentDataIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+  }
+
+  export type $EquipmentDataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EquipmentData"
+    objects: {
+      equipment: Prisma.$EquipmentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      key: string
+      value: string
+      equipmentId: string
+    }, ExtArgs["result"]["equipmentData"]>
+    composites: {}
+  }
+
+  type EquipmentDataGetPayload<S extends boolean | null | undefined | EquipmentDataDefaultArgs> = $Result.GetResult<Prisma.$EquipmentDataPayload, S>
+
+  type EquipmentDataCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EquipmentDataFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EquipmentDataCountAggregateInputType | true
+    }
+
+  export interface EquipmentDataDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EquipmentData'], meta: { name: 'EquipmentData' } }
+    /**
+     * Find zero or one EquipmentData that matches the filter.
+     * @param {EquipmentDataFindUniqueArgs} args - Arguments to find a EquipmentData
+     * @example
+     * // Get one EquipmentData
+     * const equipmentData = await prisma.equipmentData.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EquipmentDataFindUniqueArgs>(args: SelectSubset<T, EquipmentDataFindUniqueArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EquipmentData that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EquipmentDataFindUniqueOrThrowArgs} args - Arguments to find a EquipmentData
+     * @example
+     * // Get one EquipmentData
+     * const equipmentData = await prisma.equipmentData.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EquipmentDataFindUniqueOrThrowArgs>(args: SelectSubset<T, EquipmentDataFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EquipmentData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentDataFindFirstArgs} args - Arguments to find a EquipmentData
+     * @example
+     * // Get one EquipmentData
+     * const equipmentData = await prisma.equipmentData.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EquipmentDataFindFirstArgs>(args?: SelectSubset<T, EquipmentDataFindFirstArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EquipmentData that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentDataFindFirstOrThrowArgs} args - Arguments to find a EquipmentData
+     * @example
+     * // Get one EquipmentData
+     * const equipmentData = await prisma.equipmentData.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EquipmentDataFindFirstOrThrowArgs>(args?: SelectSubset<T, EquipmentDataFindFirstOrThrowArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EquipmentData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentDataFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EquipmentData
+     * const equipmentData = await prisma.equipmentData.findMany()
+     * 
+     * // Get first 10 EquipmentData
+     * const equipmentData = await prisma.equipmentData.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const equipmentDataWithIdOnly = await prisma.equipmentData.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EquipmentDataFindManyArgs>(args?: SelectSubset<T, EquipmentDataFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EquipmentData.
+     * @param {EquipmentDataCreateArgs} args - Arguments to create a EquipmentData.
+     * @example
+     * // Create one EquipmentData
+     * const EquipmentData = await prisma.equipmentData.create({
+     *   data: {
+     *     // ... data to create a EquipmentData
+     *   }
+     * })
+     * 
+     */
+    create<T extends EquipmentDataCreateArgs>(args: SelectSubset<T, EquipmentDataCreateArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EquipmentData.
+     * @param {EquipmentDataCreateManyArgs} args - Arguments to create many EquipmentData.
+     * @example
+     * // Create many EquipmentData
+     * const equipmentData = await prisma.equipmentData.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EquipmentDataCreateManyArgs>(args?: SelectSubset<T, EquipmentDataCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EquipmentData and returns the data saved in the database.
+     * @param {EquipmentDataCreateManyAndReturnArgs} args - Arguments to create many EquipmentData.
+     * @example
+     * // Create many EquipmentData
+     * const equipmentData = await prisma.equipmentData.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EquipmentData and only return the `id`
+     * const equipmentDataWithIdOnly = await prisma.equipmentData.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EquipmentDataCreateManyAndReturnArgs>(args?: SelectSubset<T, EquipmentDataCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EquipmentData.
+     * @param {EquipmentDataDeleteArgs} args - Arguments to delete one EquipmentData.
+     * @example
+     * // Delete one EquipmentData
+     * const EquipmentData = await prisma.equipmentData.delete({
+     *   where: {
+     *     // ... filter to delete one EquipmentData
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EquipmentDataDeleteArgs>(args: SelectSubset<T, EquipmentDataDeleteArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EquipmentData.
+     * @param {EquipmentDataUpdateArgs} args - Arguments to update one EquipmentData.
+     * @example
+     * // Update one EquipmentData
+     * const equipmentData = await prisma.equipmentData.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EquipmentDataUpdateArgs>(args: SelectSubset<T, EquipmentDataUpdateArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EquipmentData.
+     * @param {EquipmentDataDeleteManyArgs} args - Arguments to filter EquipmentData to delete.
+     * @example
+     * // Delete a few EquipmentData
+     * const { count } = await prisma.equipmentData.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EquipmentDataDeleteManyArgs>(args?: SelectSubset<T, EquipmentDataDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EquipmentData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentDataUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EquipmentData
+     * const equipmentData = await prisma.equipmentData.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EquipmentDataUpdateManyArgs>(args: SelectSubset<T, EquipmentDataUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EquipmentData and returns the data updated in the database.
+     * @param {EquipmentDataUpdateManyAndReturnArgs} args - Arguments to update many EquipmentData.
+     * @example
+     * // Update many EquipmentData
+     * const equipmentData = await prisma.equipmentData.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EquipmentData and only return the `id`
+     * const equipmentDataWithIdOnly = await prisma.equipmentData.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EquipmentDataUpdateManyAndReturnArgs>(args: SelectSubset<T, EquipmentDataUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EquipmentData.
+     * @param {EquipmentDataUpsertArgs} args - Arguments to update or create a EquipmentData.
+     * @example
+     * // Update or create a EquipmentData
+     * const equipmentData = await prisma.equipmentData.upsert({
+     *   create: {
+     *     // ... data to create a EquipmentData
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EquipmentData we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EquipmentDataUpsertArgs>(args: SelectSubset<T, EquipmentDataUpsertArgs<ExtArgs>>): Prisma__EquipmentDataClient<$Result.GetResult<Prisma.$EquipmentDataPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EquipmentData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentDataCountArgs} args - Arguments to filter EquipmentData to count.
+     * @example
+     * // Count the number of EquipmentData
+     * const count = await prisma.equipmentData.count({
+     *   where: {
+     *     // ... the filter for the EquipmentData we want to count
+     *   }
+     * })
+    **/
+    count<T extends EquipmentDataCountArgs>(
+      args?: Subset<T, EquipmentDataCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EquipmentDataCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EquipmentData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentDataAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EquipmentDataAggregateArgs>(args: Subset<T, EquipmentDataAggregateArgs>): Prisma.PrismaPromise<GetEquipmentDataAggregateType<T>>
+
+    /**
+     * Group by EquipmentData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EquipmentDataGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EquipmentDataGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EquipmentDataGroupByArgs['orderBy'] }
+        : { orderBy?: EquipmentDataGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EquipmentDataGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEquipmentDataGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EquipmentData model
+   */
+  readonly fields: EquipmentDataFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EquipmentData.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EquipmentDataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    equipment<T extends EquipmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EquipmentDefaultArgs<ExtArgs>>): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EquipmentData model
+   */
+  interface EquipmentDataFieldRefs {
+    readonly id: FieldRef<"EquipmentData", 'String'>
+    readonly key: FieldRef<"EquipmentData", 'String'>
+    readonly value: FieldRef<"EquipmentData", 'String'>
+    readonly equipmentId: FieldRef<"EquipmentData", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EquipmentData findUnique
+   */
+  export type EquipmentDataFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * Filter, which EquipmentData to fetch.
+     */
+    where: EquipmentDataWhereUniqueInput
+  }
+
+  /**
+   * EquipmentData findUniqueOrThrow
+   */
+  export type EquipmentDataFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * Filter, which EquipmentData to fetch.
+     */
+    where: EquipmentDataWhereUniqueInput
+  }
+
+  /**
+   * EquipmentData findFirst
+   */
+  export type EquipmentDataFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * Filter, which EquipmentData to fetch.
+     */
+    where?: EquipmentDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquipmentData to fetch.
+     */
+    orderBy?: EquipmentDataOrderByWithRelationInput | EquipmentDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EquipmentData.
+     */
+    cursor?: EquipmentDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquipmentData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquipmentData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EquipmentData.
+     */
+    distinct?: EquipmentDataScalarFieldEnum | EquipmentDataScalarFieldEnum[]
+  }
+
+  /**
+   * EquipmentData findFirstOrThrow
+   */
+  export type EquipmentDataFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * Filter, which EquipmentData to fetch.
+     */
+    where?: EquipmentDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquipmentData to fetch.
+     */
+    orderBy?: EquipmentDataOrderByWithRelationInput | EquipmentDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EquipmentData.
+     */
+    cursor?: EquipmentDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquipmentData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquipmentData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EquipmentData.
+     */
+    distinct?: EquipmentDataScalarFieldEnum | EquipmentDataScalarFieldEnum[]
+  }
+
+  /**
+   * EquipmentData findMany
+   */
+  export type EquipmentDataFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * Filter, which EquipmentData to fetch.
+     */
+    where?: EquipmentDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EquipmentData to fetch.
+     */
+    orderBy?: EquipmentDataOrderByWithRelationInput | EquipmentDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EquipmentData.
+     */
+    cursor?: EquipmentDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EquipmentData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EquipmentData.
+     */
+    skip?: number
+    distinct?: EquipmentDataScalarFieldEnum | EquipmentDataScalarFieldEnum[]
+  }
+
+  /**
+   * EquipmentData create
+   */
+  export type EquipmentDataCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EquipmentData.
+     */
+    data: XOR<EquipmentDataCreateInput, EquipmentDataUncheckedCreateInput>
+  }
+
+  /**
+   * EquipmentData createMany
+   */
+  export type EquipmentDataCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EquipmentData.
+     */
+    data: EquipmentDataCreateManyInput | EquipmentDataCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EquipmentData createManyAndReturn
+   */
+  export type EquipmentDataCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * The data used to create many EquipmentData.
+     */
+    data: EquipmentDataCreateManyInput | EquipmentDataCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EquipmentData update
+   */
+  export type EquipmentDataUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EquipmentData.
+     */
+    data: XOR<EquipmentDataUpdateInput, EquipmentDataUncheckedUpdateInput>
+    /**
+     * Choose, which EquipmentData to update.
+     */
+    where: EquipmentDataWhereUniqueInput
+  }
+
+  /**
+   * EquipmentData updateMany
+   */
+  export type EquipmentDataUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EquipmentData.
+     */
+    data: XOR<EquipmentDataUpdateManyMutationInput, EquipmentDataUncheckedUpdateManyInput>
+    /**
+     * Filter which EquipmentData to update
+     */
+    where?: EquipmentDataWhereInput
+    /**
+     * Limit how many EquipmentData to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EquipmentData updateManyAndReturn
+   */
+  export type EquipmentDataUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * The data used to update EquipmentData.
+     */
+    data: XOR<EquipmentDataUpdateManyMutationInput, EquipmentDataUncheckedUpdateManyInput>
+    /**
+     * Filter which EquipmentData to update
+     */
+    where?: EquipmentDataWhereInput
+    /**
+     * Limit how many EquipmentData to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EquipmentData upsert
+   */
+  export type EquipmentDataUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EquipmentData to update in case it exists.
+     */
+    where: EquipmentDataWhereUniqueInput
+    /**
+     * In case the EquipmentData found by the `where` argument doesn't exist, create a new EquipmentData with this data.
+     */
+    create: XOR<EquipmentDataCreateInput, EquipmentDataUncheckedCreateInput>
+    /**
+     * In case the EquipmentData was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EquipmentDataUpdateInput, EquipmentDataUncheckedUpdateInput>
+  }
+
+  /**
+   * EquipmentData delete
+   */
+  export type EquipmentDataDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
+    /**
+     * Filter which EquipmentData to delete.
+     */
+    where: EquipmentDataWhereUniqueInput
+  }
+
+  /**
+   * EquipmentData deleteMany
+   */
+  export type EquipmentDataDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EquipmentData to delete
+     */
+    where?: EquipmentDataWhereInput
+    /**
+     * Limit how many EquipmentData to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EquipmentData without action
+   */
+  export type EquipmentDataDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentData
+     */
+    select?: EquipmentDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentData
+     */
+    omit?: EquipmentDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentDataInclude<ExtArgs> | null
   }
 
 
@@ -15328,6 +16501,16 @@ export namespace Prisma {
   export type EquipmentScalarFieldEnum = (typeof EquipmentScalarFieldEnum)[keyof typeof EquipmentScalarFieldEnum]
 
 
+  export const EquipmentDataScalarFieldEnum: {
+    id: 'id',
+    key: 'key',
+    value: 'value',
+    equipmentId: 'equipmentId'
+  };
+
+  export type EquipmentDataScalarFieldEnum = (typeof EquipmentDataScalarFieldEnum)[keyof typeof EquipmentDataScalarFieldEnum]
+
+
   export const SparePartScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -15729,6 +16912,7 @@ export namespace Prisma {
     repairServices?: RepairServiceListRelationFilter
     checklists?: ChecklistListRelationFilter
     inspectionSchedules?: InspectionScheduleListRelationFilter
+    EquipmentData?: EquipmentDataListRelationFilter
   }
 
   export type EquipmentOrderByWithRelationInput = {
@@ -15744,6 +16928,7 @@ export namespace Prisma {
     repairServices?: RepairServiceOrderByRelationAggregateInput
     checklists?: ChecklistOrderByRelationAggregateInput
     inspectionSchedules?: InspectionScheduleOrderByRelationAggregateInput
+    EquipmentData?: EquipmentDataOrderByRelationAggregateInput
   }
 
   export type EquipmentWhereUniqueInput = Prisma.AtLeast<{
@@ -15762,6 +16947,7 @@ export namespace Prisma {
     repairServices?: RepairServiceListRelationFilter
     checklists?: ChecklistListRelationFilter
     inspectionSchedules?: InspectionScheduleListRelationFilter
+    EquipmentData?: EquipmentDataListRelationFilter
   }, "id">
 
   export type EquipmentOrderByWithAggregationInput = {
@@ -15790,6 +16976,56 @@ export namespace Prisma {
     daysBetweenRepairs?: IntNullableWithAggregatesFilter<"Equipment"> | number | null
     createdBy?: StringWithAggregatesFilter<"Equipment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Equipment"> | Date | string
+  }
+
+  export type EquipmentDataWhereInput = {
+    AND?: EquipmentDataWhereInput | EquipmentDataWhereInput[]
+    OR?: EquipmentDataWhereInput[]
+    NOT?: EquipmentDataWhereInput | EquipmentDataWhereInput[]
+    id?: StringFilter<"EquipmentData"> | string
+    key?: StringFilter<"EquipmentData"> | string
+    value?: StringFilter<"EquipmentData"> | string
+    equipmentId?: StringFilter<"EquipmentData"> | string
+    equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
+  }
+
+  export type EquipmentDataOrderByWithRelationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    equipmentId?: SortOrder
+    equipment?: EquipmentOrderByWithRelationInput
+  }
+
+  export type EquipmentDataWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EquipmentDataWhereInput | EquipmentDataWhereInput[]
+    OR?: EquipmentDataWhereInput[]
+    NOT?: EquipmentDataWhereInput | EquipmentDataWhereInput[]
+    key?: StringFilter<"EquipmentData"> | string
+    value?: StringFilter<"EquipmentData"> | string
+    equipmentId?: StringFilter<"EquipmentData"> | string
+    equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
+  }, "id">
+
+  export type EquipmentDataOrderByWithAggregationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    equipmentId?: SortOrder
+    _count?: EquipmentDataCountOrderByAggregateInput
+    _max?: EquipmentDataMaxOrderByAggregateInput
+    _min?: EquipmentDataMinOrderByAggregateInput
+  }
+
+  export type EquipmentDataScalarWhereWithAggregatesInput = {
+    AND?: EquipmentDataScalarWhereWithAggregatesInput | EquipmentDataScalarWhereWithAggregatesInput[]
+    OR?: EquipmentDataScalarWhereWithAggregatesInput[]
+    NOT?: EquipmentDataScalarWhereWithAggregatesInput | EquipmentDataScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EquipmentData"> | string
+    key?: StringWithAggregatesFilter<"EquipmentData"> | string
+    value?: StringWithAggregatesFilter<"EquipmentData"> | string
+    equipmentId?: StringWithAggregatesFilter<"EquipmentData"> | string
   }
 
   export type SparePartWhereInput = {
@@ -16615,6 +17851,7 @@ export namespace Prisma {
     repairServices?: RepairServiceCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentUncheckedCreateInput = {
@@ -16629,6 +17866,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUncheckedCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistUncheckedCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleUncheckedCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentUpdateInput = {
@@ -16643,6 +17881,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentUncheckedUpdateInput = {
@@ -16657,6 +17896,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUncheckedUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUncheckedUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUncheckedUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentCreateManyInput = {
@@ -16686,6 +17926,54 @@ export namespace Prisma {
     daysBetweenRepairs?: NullableIntFieldUpdateOperationsInput | number | null
     createdBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EquipmentDataCreateInput = {
+    id?: string
+    key: string
+    value: string
+    equipment: EquipmentCreateNestedOneWithoutEquipmentDataInput
+  }
+
+  export type EquipmentDataUncheckedCreateInput = {
+    id?: string
+    key: string
+    value: string
+    equipmentId: string
+  }
+
+  export type EquipmentDataUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    equipment?: EquipmentUpdateOneRequiredWithoutEquipmentDataNestedInput
+  }
+
+  export type EquipmentDataUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    equipmentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquipmentDataCreateManyInput = {
+    id?: string
+    key: string
+    value: string
+    equipmentId: string
+  }
+
+  export type EquipmentDataUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquipmentDataUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+    equipmentId?: StringFieldUpdateOperationsInput | string
   }
 
   export type SparePartCreateInput = {
@@ -17601,9 +18889,19 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type EquipmentDataListRelationFilter = {
+    every?: EquipmentDataWhereInput
+    some?: EquipmentDataWhereInput
+    none?: EquipmentDataWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type EquipmentDataOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type EquipmentCountOrderByAggregateInput = {
@@ -17672,6 +18970,32 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type EquipmentScalarRelationFilter = {
+    is?: EquipmentWhereInput
+    isNot?: EquipmentWhereInput
+  }
+
+  export type EquipmentDataCountOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    equipmentId?: SortOrder
+  }
+
+  export type EquipmentDataMaxOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    equipmentId?: SortOrder
+  }
+
+  export type EquipmentDataMinOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    value?: SortOrder
+    equipmentId?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -17839,11 +19163,6 @@ export namespace Prisma {
   export type ServiceRequestScalarRelationFilter = {
     is?: ServiceRequestWhereInput
     isNot?: ServiceRequestWhereInput
-  }
-
-  export type EquipmentScalarRelationFilter = {
-    is?: EquipmentWhereInput
-    isNot?: EquipmentWhereInput
   }
 
   export type ServiceOrderCountOrderByAggregateInput = {
@@ -18704,6 +20023,13 @@ export namespace Prisma {
     connect?: InspectionScheduleWhereUniqueInput | InspectionScheduleWhereUniqueInput[]
   }
 
+  export type EquipmentDataCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<EquipmentDataCreateWithoutEquipmentInput, EquipmentDataUncheckedCreateWithoutEquipmentInput> | EquipmentDataCreateWithoutEquipmentInput[] | EquipmentDataUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: EquipmentDataCreateOrConnectWithoutEquipmentInput | EquipmentDataCreateOrConnectWithoutEquipmentInput[]
+    createMany?: EquipmentDataCreateManyEquipmentInputEnvelope
+    connect?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+  }
+
   export type ServiceOrderUncheckedCreateNestedManyWithoutEquipmentInput = {
     create?: XOR<ServiceOrderCreateWithoutEquipmentInput, ServiceOrderUncheckedCreateWithoutEquipmentInput> | ServiceOrderCreateWithoutEquipmentInput[] | ServiceOrderUncheckedCreateWithoutEquipmentInput[]
     connectOrCreate?: ServiceOrderCreateOrConnectWithoutEquipmentInput | ServiceOrderCreateOrConnectWithoutEquipmentInput[]
@@ -18730,6 +20056,13 @@ export namespace Prisma {
     connectOrCreate?: InspectionScheduleCreateOrConnectWithoutEquipmentInput | InspectionScheduleCreateOrConnectWithoutEquipmentInput[]
     createMany?: InspectionScheduleCreateManyEquipmentInputEnvelope
     connect?: InspectionScheduleWhereUniqueInput | InspectionScheduleWhereUniqueInput[]
+  }
+
+  export type EquipmentDataUncheckedCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<EquipmentDataCreateWithoutEquipmentInput, EquipmentDataUncheckedCreateWithoutEquipmentInput> | EquipmentDataCreateWithoutEquipmentInput[] | EquipmentDataUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: EquipmentDataCreateOrConnectWithoutEquipmentInput | EquipmentDataCreateOrConnectWithoutEquipmentInput[]
+    createMany?: EquipmentDataCreateManyEquipmentInputEnvelope
+    connect?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -18808,6 +20141,20 @@ export namespace Prisma {
     deleteMany?: InspectionScheduleScalarWhereInput | InspectionScheduleScalarWhereInput[]
   }
 
+  export type EquipmentDataUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<EquipmentDataCreateWithoutEquipmentInput, EquipmentDataUncheckedCreateWithoutEquipmentInput> | EquipmentDataCreateWithoutEquipmentInput[] | EquipmentDataUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: EquipmentDataCreateOrConnectWithoutEquipmentInput | EquipmentDataCreateOrConnectWithoutEquipmentInput[]
+    upsert?: EquipmentDataUpsertWithWhereUniqueWithoutEquipmentInput | EquipmentDataUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: EquipmentDataCreateManyEquipmentInputEnvelope
+    set?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    disconnect?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    delete?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    connect?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    update?: EquipmentDataUpdateWithWhereUniqueWithoutEquipmentInput | EquipmentDataUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: EquipmentDataUpdateManyWithWhereWithoutEquipmentInput | EquipmentDataUpdateManyWithWhereWithoutEquipmentInput[]
+    deleteMany?: EquipmentDataScalarWhereInput | EquipmentDataScalarWhereInput[]
+  }
+
   export type ServiceOrderUncheckedUpdateManyWithoutEquipmentNestedInput = {
     create?: XOR<ServiceOrderCreateWithoutEquipmentInput, ServiceOrderUncheckedCreateWithoutEquipmentInput> | ServiceOrderCreateWithoutEquipmentInput[] | ServiceOrderUncheckedCreateWithoutEquipmentInput[]
     connectOrCreate?: ServiceOrderCreateOrConnectWithoutEquipmentInput | ServiceOrderCreateOrConnectWithoutEquipmentInput[]
@@ -18862,6 +20209,34 @@ export namespace Prisma {
     update?: InspectionScheduleUpdateWithWhereUniqueWithoutEquipmentInput | InspectionScheduleUpdateWithWhereUniqueWithoutEquipmentInput[]
     updateMany?: InspectionScheduleUpdateManyWithWhereWithoutEquipmentInput | InspectionScheduleUpdateManyWithWhereWithoutEquipmentInput[]
     deleteMany?: InspectionScheduleScalarWhereInput | InspectionScheduleScalarWhereInput[]
+  }
+
+  export type EquipmentDataUncheckedUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<EquipmentDataCreateWithoutEquipmentInput, EquipmentDataUncheckedCreateWithoutEquipmentInput> | EquipmentDataCreateWithoutEquipmentInput[] | EquipmentDataUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: EquipmentDataCreateOrConnectWithoutEquipmentInput | EquipmentDataCreateOrConnectWithoutEquipmentInput[]
+    upsert?: EquipmentDataUpsertWithWhereUniqueWithoutEquipmentInput | EquipmentDataUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: EquipmentDataCreateManyEquipmentInputEnvelope
+    set?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    disconnect?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    delete?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    connect?: EquipmentDataWhereUniqueInput | EquipmentDataWhereUniqueInput[]
+    update?: EquipmentDataUpdateWithWhereUniqueWithoutEquipmentInput | EquipmentDataUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: EquipmentDataUpdateManyWithWhereWithoutEquipmentInput | EquipmentDataUpdateManyWithWhereWithoutEquipmentInput[]
+    deleteMany?: EquipmentDataScalarWhereInput | EquipmentDataScalarWhereInput[]
+  }
+
+  export type EquipmentCreateNestedOneWithoutEquipmentDataInput = {
+    create?: XOR<EquipmentCreateWithoutEquipmentDataInput, EquipmentUncheckedCreateWithoutEquipmentDataInput>
+    connectOrCreate?: EquipmentCreateOrConnectWithoutEquipmentDataInput
+    connect?: EquipmentWhereUniqueInput
+  }
+
+  export type EquipmentUpdateOneRequiredWithoutEquipmentDataNestedInput = {
+    create?: XOR<EquipmentCreateWithoutEquipmentDataInput, EquipmentUncheckedCreateWithoutEquipmentDataInput>
+    connectOrCreate?: EquipmentCreateOrConnectWithoutEquipmentDataInput
+    upsert?: EquipmentUpsertWithoutEquipmentDataInput
+    connect?: EquipmentWhereUniqueInput
+    update?: XOR<XOR<EquipmentUpdateToOneWithWhereWithoutEquipmentDataInput, EquipmentUpdateWithoutEquipmentDataInput>, EquipmentUncheckedUpdateWithoutEquipmentDataInput>
   }
 
   export type UserCreateNestedOneWithoutSparePartInput = {
@@ -19830,6 +21205,7 @@ export namespace Prisma {
     repairServices?: RepairServiceCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentUncheckedCreateWithoutCreatorInput = {
@@ -19843,6 +21219,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUncheckedCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistUncheckedCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleUncheckedCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentCreateOrConnectWithoutCreatorInput = {
@@ -20795,6 +22172,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EquipmentDataCreateWithoutEquipmentInput = {
+    id?: string
+    key: string
+    value: string
+  }
+
+  export type EquipmentDataUncheckedCreateWithoutEquipmentInput = {
+    id?: string
+    key: string
+    value: string
+  }
+
+  export type EquipmentDataCreateOrConnectWithoutEquipmentInput = {
+    where: EquipmentDataWhereUniqueInput
+    create: XOR<EquipmentDataCreateWithoutEquipmentInput, EquipmentDataUncheckedCreateWithoutEquipmentInput>
+  }
+
+  export type EquipmentDataCreateManyEquipmentInputEnvelope = {
+    data: EquipmentDataCreateManyEquipmentInput | EquipmentDataCreateManyEquipmentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutCreatedEquipmentInput = {
     update: XOR<UserUpdateWithoutCreatedEquipmentInput, UserUncheckedUpdateWithoutCreatedEquipmentInput>
     create: XOR<UserCreateWithoutCreatedEquipmentInput, UserUncheckedCreateWithoutCreatedEquipmentInput>
@@ -20908,6 +22307,104 @@ export namespace Prisma {
   export type InspectionScheduleUpdateManyWithWhereWithoutEquipmentInput = {
     where: InspectionScheduleScalarWhereInput
     data: XOR<InspectionScheduleUpdateManyMutationInput, InspectionScheduleUncheckedUpdateManyWithoutEquipmentInput>
+  }
+
+  export type EquipmentDataUpsertWithWhereUniqueWithoutEquipmentInput = {
+    where: EquipmentDataWhereUniqueInput
+    update: XOR<EquipmentDataUpdateWithoutEquipmentInput, EquipmentDataUncheckedUpdateWithoutEquipmentInput>
+    create: XOR<EquipmentDataCreateWithoutEquipmentInput, EquipmentDataUncheckedCreateWithoutEquipmentInput>
+  }
+
+  export type EquipmentDataUpdateWithWhereUniqueWithoutEquipmentInput = {
+    where: EquipmentDataWhereUniqueInput
+    data: XOR<EquipmentDataUpdateWithoutEquipmentInput, EquipmentDataUncheckedUpdateWithoutEquipmentInput>
+  }
+
+  export type EquipmentDataUpdateManyWithWhereWithoutEquipmentInput = {
+    where: EquipmentDataScalarWhereInput
+    data: XOR<EquipmentDataUpdateManyMutationInput, EquipmentDataUncheckedUpdateManyWithoutEquipmentInput>
+  }
+
+  export type EquipmentDataScalarWhereInput = {
+    AND?: EquipmentDataScalarWhereInput | EquipmentDataScalarWhereInput[]
+    OR?: EquipmentDataScalarWhereInput[]
+    NOT?: EquipmentDataScalarWhereInput | EquipmentDataScalarWhereInput[]
+    id?: StringFilter<"EquipmentData"> | string
+    key?: StringFilter<"EquipmentData"> | string
+    value?: StringFilter<"EquipmentData"> | string
+    equipmentId?: StringFilter<"EquipmentData"> | string
+  }
+
+  export type EquipmentCreateWithoutEquipmentDataInput = {
+    id?: string
+    name: string
+    lastRepairDate?: Date | string | null
+    nextRepairDate?: Date | string | null
+    daysBetweenRepairs?: number | null
+    createdAt?: Date | string
+    creator: UserCreateNestedOneWithoutCreatedEquipmentInput
+    serviceOrders?: ServiceOrderCreateNestedManyWithoutEquipmentInput
+    repairServices?: RepairServiceCreateNestedManyWithoutUsedEquipmentInput
+    checklists?: ChecklistCreateNestedManyWithoutEquipmentInput
+    inspectionSchedules?: InspectionScheduleCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentUncheckedCreateWithoutEquipmentDataInput = {
+    id?: string
+    name: string
+    lastRepairDate?: Date | string | null
+    nextRepairDate?: Date | string | null
+    daysBetweenRepairs?: number | null
+    createdBy: string
+    createdAt?: Date | string
+    serviceOrders?: ServiceOrderUncheckedCreateNestedManyWithoutEquipmentInput
+    repairServices?: RepairServiceUncheckedCreateNestedManyWithoutUsedEquipmentInput
+    checklists?: ChecklistUncheckedCreateNestedManyWithoutEquipmentInput
+    inspectionSchedules?: InspectionScheduleUncheckedCreateNestedManyWithoutEquipmentInput
+  }
+
+  export type EquipmentCreateOrConnectWithoutEquipmentDataInput = {
+    where: EquipmentWhereUniqueInput
+    create: XOR<EquipmentCreateWithoutEquipmentDataInput, EquipmentUncheckedCreateWithoutEquipmentDataInput>
+  }
+
+  export type EquipmentUpsertWithoutEquipmentDataInput = {
+    update: XOR<EquipmentUpdateWithoutEquipmentDataInput, EquipmentUncheckedUpdateWithoutEquipmentDataInput>
+    create: XOR<EquipmentCreateWithoutEquipmentDataInput, EquipmentUncheckedCreateWithoutEquipmentDataInput>
+    where?: EquipmentWhereInput
+  }
+
+  export type EquipmentUpdateToOneWithWhereWithoutEquipmentDataInput = {
+    where?: EquipmentWhereInput
+    data: XOR<EquipmentUpdateWithoutEquipmentDataInput, EquipmentUncheckedUpdateWithoutEquipmentDataInput>
+  }
+
+  export type EquipmentUpdateWithoutEquipmentDataInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    lastRepairDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRepairDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    daysBetweenRepairs?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutCreatedEquipmentNestedInput
+    serviceOrders?: ServiceOrderUpdateManyWithoutEquipmentNestedInput
+    repairServices?: RepairServiceUpdateManyWithoutUsedEquipmentNestedInput
+    checklists?: ChecklistUpdateManyWithoutEquipmentNestedInput
+    inspectionSchedules?: InspectionScheduleUpdateManyWithoutEquipmentNestedInput
+  }
+
+  export type EquipmentUncheckedUpdateWithoutEquipmentDataInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    lastRepairDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextRepairDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    daysBetweenRepairs?: NullableIntFieldUpdateOperationsInput | number | null
+    createdBy?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceOrders?: ServiceOrderUncheckedUpdateManyWithoutEquipmentNestedInput
+    repairServices?: RepairServiceUncheckedUpdateManyWithoutUsedEquipmentNestedInput
+    checklists?: ChecklistUncheckedUpdateManyWithoutEquipmentNestedInput
+    inspectionSchedules?: InspectionScheduleUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type UserCreateWithoutSparePartInput = {
@@ -21367,6 +22864,7 @@ export namespace Prisma {
     repairServices?: RepairServiceCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentUncheckedCreateWithoutServiceOrdersInput = {
@@ -21380,6 +22878,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUncheckedCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistUncheckedCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleUncheckedCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentCreateOrConnectWithoutServiceOrdersInput = {
@@ -21557,6 +23056,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentUncheckedUpdateWithoutServiceOrdersInput = {
@@ -21570,6 +23070,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUncheckedUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUncheckedUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUncheckedUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type UserUpsertWithoutCreatedOrdersInput = {
@@ -21750,6 +23251,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderCreateNestedManyWithoutEquipmentInput
     checklists?: ChecklistCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentUncheckedCreateWithoutRepairServicesInput = {
@@ -21763,6 +23265,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUncheckedCreateNestedManyWithoutEquipmentInput
     checklists?: ChecklistUncheckedCreateNestedManyWithoutEquipmentInput
     inspectionSchedules?: InspectionScheduleUncheckedCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentCreateOrConnectWithoutRepairServicesInput = {
@@ -21988,6 +23491,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUpdateManyWithoutEquipmentNestedInput
     checklists?: ChecklistUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentUncheckedUpdateWithoutRepairServicesInput = {
@@ -22001,6 +23505,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUncheckedUpdateManyWithoutEquipmentNestedInput
     checklists?: ChecklistUncheckedUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUncheckedUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type SparePartUpsertWithWhereUniqueWithoutUsedInInput = {
@@ -22097,6 +23602,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderCreateNestedManyWithoutEquipmentInput
     repairServices?: RepairServiceCreateNestedManyWithoutUsedEquipmentInput
     inspectionSchedules?: InspectionScheduleCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentUncheckedCreateWithoutChecklistsInput = {
@@ -22110,6 +23616,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUncheckedCreateNestedManyWithoutEquipmentInput
     repairServices?: RepairServiceUncheckedCreateNestedManyWithoutUsedEquipmentInput
     inspectionSchedules?: InspectionScheduleUncheckedCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentCreateOrConnectWithoutChecklistsInput = {
@@ -22246,6 +23753,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUpdateManyWithoutEquipmentNestedInput
     repairServices?: RepairServiceUpdateManyWithoutUsedEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentUncheckedUpdateWithoutChecklistsInput = {
@@ -22259,6 +23767,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUncheckedUpdateManyWithoutEquipmentNestedInput
     repairServices?: RepairServiceUncheckedUpdateManyWithoutUsedEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUncheckedUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type UserUpsertWithoutCreatedChecklistsInput = {
@@ -22763,6 +24272,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderCreateNestedManyWithoutEquipmentInput
     repairServices?: RepairServiceCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentUncheckedCreateWithoutInspectionSchedulesInput = {
@@ -22776,6 +24286,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUncheckedCreateNestedManyWithoutEquipmentInput
     repairServices?: RepairServiceUncheckedCreateNestedManyWithoutUsedEquipmentInput
     checklists?: ChecklistUncheckedCreateNestedManyWithoutEquipmentInput
+    EquipmentData?: EquipmentDataUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
   export type EquipmentCreateOrConnectWithoutInspectionSchedulesInput = {
@@ -22910,6 +24421,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUpdateManyWithoutEquipmentNestedInput
     repairServices?: RepairServiceUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentUncheckedUpdateWithoutInspectionSchedulesInput = {
@@ -22923,6 +24435,7 @@ export namespace Prisma {
     serviceOrders?: ServiceOrderUncheckedUpdateManyWithoutEquipmentNestedInput
     repairServices?: RepairServiceUncheckedUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUncheckedUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type ChecklistUpsertWithoutInspectionSchedulesInput = {
@@ -23198,6 +24711,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentUncheckedUpdateWithoutCreatorInput = {
@@ -23211,6 +24725,7 @@ export namespace Prisma {
     repairServices?: RepairServiceUncheckedUpdateManyWithoutUsedEquipmentNestedInput
     checklists?: ChecklistUncheckedUpdateManyWithoutEquipmentNestedInput
     inspectionSchedules?: InspectionScheduleUncheckedUpdateManyWithoutEquipmentNestedInput
+    EquipmentData?: EquipmentDataUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
   export type EquipmentUncheckedUpdateManyWithoutCreatorInput = {
@@ -23597,6 +25112,12 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type EquipmentDataCreateManyEquipmentInput = {
+    id?: string
+    key: string
+    value: string
+  }
+
   export type ServiceOrderUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23742,6 +25263,24 @@ export namespace Prisma {
     seen?: BoolFieldUpdateOperationsInput | boolean
     createdBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EquipmentDataUpdateWithoutEquipmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquipmentDataUncheckedUpdateWithoutEquipmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EquipmentDataUncheckedUpdateManyWithoutEquipmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: StringFieldUpdateOperationsInput | string
   }
 
   export type RepairServiceUpdateWithoutPartsUsedInput = {

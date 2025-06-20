@@ -75,6 +75,15 @@ model Equipment {
   repairServices      RepairService[]      @relation("UsedEquipments")
   checklists          Checklist[]
   inspectionSchedules InspectionSchedule[]
+  EquipmentData       EquipmentData[]
+}
+
+model EquipmentData {
+  id          String    @id @default(cuid())
+  key         String
+  value       String
+  equipmentId String
+  equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
 }
 
 model SparePart {
