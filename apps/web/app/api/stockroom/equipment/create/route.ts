@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
     const equipment = await prisma.equipment.create({
       data: {
         name,
+        quantity: 0,
         lastRepairDate: lastRepairDate ? new Date(lastRepairDate) : undefined,
         nextRepairDate: nextRepairDate ? new Date(nextRepairDate) : undefined,
         daysBetweenRepairs,

@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const lang = "pt";
 
 const menuItems = [
-  { href: "/stockroom/stockroomEquipmentList", text: getTranslation(lang, "stockroomEquipmentList"), icon: "Inventory" },
+  { href: "/stockroom/inventory", text: getTranslation(lang, "inventory"), icon: "Inventory" },
   { href: "/stockroom/stockroomNewEquipment", text: getTranslation(lang, "stockroomNewEquipment"), icon: "AddCircle" },
   { href: "/stockroom/stockroomNewSparePart", text: getTranslation(lang, "stockroomNewSparePart"), icon: "AddCircleOutline" },
   { href: "/", text: getTranslation(lang, "return"), icon: "ArrowBack" },
@@ -20,7 +20,7 @@ export default function StockroomLayout({ children }: { children: ReactNode }) {
       useEffect(() => {
         setTitle(String(getTranslation(lang, "stockroom")));
         setMenuItems([
-          { href: "/stockroom/stockroomEquipmentList", text: String(getTranslation(lang, "stockroomEquipmentList")), icon: "Inventory" },
+          { href: "/stockroom/inventory", text: String(getTranslation(lang, "inventory")), icon: "Inventory" },
           { href: "/stockroom/stockroomNewEquipment", text: String(getTranslation(lang, "stockroomNewEquipment")), icon: "AddCircle" },
           { href: "/stockroom/stockroomNewSparePart", text: String(getTranslation(lang, "stockroomNewSparePart")), icon: "AddCircleOutline" },
           { href: "/", text: String(getTranslation(lang, "return")), icon: "ArrowBack" },
