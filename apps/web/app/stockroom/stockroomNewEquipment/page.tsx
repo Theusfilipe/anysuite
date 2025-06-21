@@ -69,9 +69,32 @@ export default function StockroomNewEquipment() {
     setEquipmentData(equipmentData.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await fetch("/api/stockroom/equipment/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          lastRepairDate: formData.lastMaintenanceDate,
+          nextRepairDate: formData.nextMaintenanceDate,
+          daysBetweenRepairs: formData.quantityOfDaysBetweenMaintenance,
+          equipmentData,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.error("Error creating equipment:", error);
+        return;
+      }
+
+      const data = await response.json();
+      console.log("Equipment created:", data.equipment);
+    } catch (error) {
+      console.error("Error creating equipment:", error);
+    }
   };
 
   return (

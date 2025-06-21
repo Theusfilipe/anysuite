@@ -37,7 +37,7 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       equipmentUsed: "Equipment Used",
       sparePartUsed: "Spare Part Used",
       
-      stockroomEquipmentList: "Stockroom Equipment List",
+      inventory: "Inventory",
       stockroomNewEquipment: "New Equipment",
       stockroomNewSparePart: "New Spare Part",
 
@@ -155,7 +155,7 @@ const translations: { [key in Language]: { [key: string]: string } } = {
       equipmentUsed: "Equipamento utilizado",
       sparePartUsed: "Peça utilizada",
 
-      stockroomEquipmentList: "Lista de equipamentos",
+      inventory: "Inventário",
       stockroomNewEquipment: "Novo equipamento",
       stockroomNewSparePart: "Nova peça",
 
